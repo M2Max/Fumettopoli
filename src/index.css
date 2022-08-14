@@ -1,8 +1,12 @@
 :root {
-  --background: white;
-  --text-primary: black;
-  --text-secondary: royalblue;
-  --accent: purple;
+  --primary: #6200EE;
+  --primary-variant: #3700B3;
+  --secondary: #03DAC6;
+  --background: #FFFFFF;
+  --error: #B00020;
+  --on-primary: #FFFFFF;
+  --on-background: #000000;
+  --on-error: #FFFFFF;
 }
 
 body {
@@ -20,8 +24,22 @@ code {
 }
 
 [data-theme='dark'] {
-  --background: black;
-  --text-primary: white;
-  --text-secondary: grey;
-  --accent: darkred;
+  --primary: #BB86FC;
+  --primary-variant: #3700B3;
+  --secondary: #03DAC6;
+  --background: #121212;
+  --error: #CF6679;
+  --on-primary: #000000;
+  --on-background: #FFFFFF;
+  --on-error: #000000;
 }
+
+.block-container{
+  background-color: var(--background) !important;
+  transition: all .5s;
+}
+
+.block-container a{
+  color: var(--on-background) !important;
+}
+
