@@ -18,15 +18,27 @@ import {
     MDBInputGroup
   } from 'mdb-react-ui-kit';
 import Darkmode from "./Darkmode";
+import logo from "../Resources/logo.png";
+import { FaBars } from "react-icons/fa";
 
 const Navbar = () => {
     const [showBasic, setShowBasic] = useState(false);
 
     return(
-        <MDBNavbar expand='lg' light bgColor='light' className="block-container">
+        <MDBNavbar expand='lg' light bgColor='light' className="block-container justify-content-center">
         <MDBContainer fluid>
-            <MDBNavbarBrand href='#'>Brand</MDBNavbarBrand>
+            <MDBNavbarBrand href='#'>
+                <img src={logo} alt="logo" className="img-fluid" style={{height: "5vh"}}/>
+            </MDBNavbarBrand>
             
+            <MDBNavbarToggler
+          aria-controls='navbarSupportedContent'
+          aria-expanded='false'
+          aria-label='Toggle navigation'
+          onClick={() => setShowBasic(!showBasic)}
+        >
+            <FaBars style={{color: "var(--on-primary)"}}/>
+        </MDBNavbarToggler>
 
             <MDBCollapse navbar show={showBasic}>
             <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
@@ -41,7 +53,7 @@ const Navbar = () => {
 
                 <MDBNavbarItem>
                 <MDBDropdown>
-                    <MDBDropdownToggle tag='a' className='nav-link'>
+                    <MDBDropdownToggle tag='a' className='nav-link pointer'>
                     Dropdown
                     </MDBDropdownToggle>
                     <MDBDropdownMenu>
@@ -57,21 +69,15 @@ const Navbar = () => {
                     </MDBDropdownMenu>
                 </MDBDropdown>
                 </MDBNavbarItem>
-
-                <MDBNavbarItem>
-                <MDBNavbarLink disabled href='#' tabIndex={-1} aria-disabled='true'>
-                    Disabled
-                </MDBNavbarLink>
-                </MDBNavbarItem>
             </MDBNavbarNav>
             
-            <MDBNavbarItem className = "d-flex w-auto mb-2 me-2">
+            <MDBNavbarItem className = "d-flex w-auto mb-2 me-2 my-2">
                 <Darkmode />
             </MDBNavbarItem>
             
-            <MDBInputGroup tag="form" className='d-flex w-auto mb-2'>
-                <input className='form-control' placeholder="Type query" aria-label="Search" type='Search' />
-                <MDBBtn outline>Search</MDBBtn>
+            <MDBInputGroup tag="form" className='d-flex w-auto mb-2 my-2'>
+                <input className='form-control search-bar' placeholder="Type query" aria-label="Search" type='Search' />
+                <MDBBtn className="search-button">Search</MDBBtn>
             </MDBInputGroup>
             </MDBCollapse>
         </MDBContainer>
