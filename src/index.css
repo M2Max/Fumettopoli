@@ -44,6 +44,10 @@ code {
   color: var(--on-primary) !important;
 }
 
+.block-container a:hover{
+  color: var(--primary-variant) !important;
+}
+
 .pointer{
   cursor: pointer;
 }
@@ -51,7 +55,14 @@ code {
 .search-bar{
   background-color: var(--on-primary);
   color: var(--on-background);
+}
+
+.search-bar:active, .search-bar:focus, .search-bar{
   border: none;
+  outline: none;
+  box-shadow: none !important;
+  background-color: var(--on-primary);
+  color: var(--on-background);
 }
 
 .search-button{
@@ -65,3 +76,13 @@ code {
   background-color: var(--primary-variant);
 }
 
+.dropdown-extra{
+  background-color: var(--background) !important;
+  color: var(--on-background) !important;
+  transition: all 0.5s;
+}
+
+.dropdown-extra:hover{
+  background-color: var(--primary-variant) !important;
+  color: var(--on-primary) !important;
+}

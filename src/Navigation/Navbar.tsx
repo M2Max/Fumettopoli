@@ -19,13 +19,13 @@ import {
   } from 'mdb-react-ui-kit';
 import Darkmode from "./Darkmode";
 import logo from "../Resources/logo.png";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
     const [showBasic, setShowBasic] = useState(false);
 
     return(
-        <MDBNavbar expand='lg' light bgColor='light' className="block-container justify-content-center">
+        <MDBNavbar expand='md' light bgColor='light' className="block-container justify-content-center w-75 mx-auto">
         <MDBContainer fluid>
             <MDBNavbarBrand href='#'>
                 <img src={logo} alt="logo" className="img-fluid" style={{height: "5vh"}}/>
@@ -43,28 +43,28 @@ const Navbar = () => {
             <MDBCollapse navbar show={showBasic}>
             <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
                 <MDBNavbarItem>
-                <MDBNavbarLink active aria-current='page' href='#'>
+                <MDBNavbarLink active aria-current='page' href='#' className="link-hover">
                     Home
                 </MDBNavbarLink>
                 </MDBNavbarItem>
                 <MDBNavbarItem>
-                <MDBNavbarLink href='#'>Link</MDBNavbarLink>
+                <MDBNavbarLink href='#' className="link-hover">Link</MDBNavbarLink>
                 </MDBNavbarItem>
 
                 <MDBNavbarItem>
                 <MDBDropdown>
-                    <MDBDropdownToggle tag='a' className='nav-link pointer'>
+                    <MDBDropdownToggle tag='a' className='nav-link pointer link-hover'>
                     Dropdown
                     </MDBDropdownToggle>
                     <MDBDropdownMenu>
                     <MDBDropdownItem>
-                        <MDBDropdownLink>Action</MDBDropdownLink>
+                        <MDBDropdownLink className="dropdown-extra">Action</MDBDropdownLink>
                     </MDBDropdownItem>
                     <MDBDropdownItem>
-                        <MDBDropdownLink>Another action</MDBDropdownLink>
+                        <MDBDropdownLink className="dropdown-extra">Another action</MDBDropdownLink>
                     </MDBDropdownItem>
                     <MDBDropdownItem>
-                        <MDBDropdownLink>Something else here</MDBDropdownLink>
+                        <MDBDropdownLink className="dropdown-extra">Something else here</MDBDropdownLink>
                     </MDBDropdownItem>
                     </MDBDropdownMenu>
                 </MDBDropdown>
@@ -72,8 +72,13 @@ const Navbar = () => {
             </MDBNavbarNav>
             
             <MDBNavbarItem className = "d-flex w-auto mb-2 me-2 my-2">
-                <Darkmode />
+                <Darkmode/>
             </MDBNavbarItem>
+
+            <MDBNavbarItem className = "d-flex w-auto mb-2 me-2 my-2">
+                <FaUserCircle size={28}/>
+            </MDBNavbarItem>
+
             
             <MDBInputGroup tag="form" className='d-flex w-auto mb-2 my-2'>
                 <input className='form-control search-bar' placeholder="Type query" aria-label="Search" type='Search' />
