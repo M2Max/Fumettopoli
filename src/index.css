@@ -86,3 +86,7 @@ code {
   background-color: var(--primary-variant) !important;
   color: var(--on-primary) !important;
 }
+
+.link-hover{
+  padding: 0;
+}

@@ -27,7 +27,7 @@ const Navbar = () => {
     return(
         <MDBNavbar expand='md' light bgColor='light' className="block-container justify-content-center w-75 mx-auto">
         <MDBContainer fluid>
-            <MDBNavbarBrand href='#'>
+            <MDBNavbarBrand href='home'>
                 <img src={logo} alt="logo" className="img-fluid" style={{height: "5vh"}}/>
             </MDBNavbarBrand>
             
@@ -41,14 +41,11 @@ const Navbar = () => {
         </MDBNavbarToggler>
 
             <MDBCollapse navbar show={showBasic}>
-            <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
+            {/* <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
                 <MDBNavbarItem>
-                <MDBNavbarLink active aria-current='page' href='#' className="link-hover">
+                <MDBNavbarLink active aria-current='page' href='home' className="link-hover">
                     Home
                 </MDBNavbarLink>
-                </MDBNavbarItem>
-                <MDBNavbarItem>
-                <MDBNavbarLink href='#' className="link-hover">Link</MDBNavbarLink>
                 </MDBNavbarItem>
 
                 <MDBNavbarItem>
@@ -69,14 +66,16 @@ const Navbar = () => {
                     </MDBDropdownMenu>
                 </MDBDropdown>
                 </MDBNavbarItem>
-            </MDBNavbarNav>
+            </MDBNavbarNav> */}
             
-            <MDBNavbarItem className = "d-flex w-auto mb-2 me-2 my-2">
+            <MDBNavbarItem float-end className = "d-flex w-auto ms-auto me-2 my-2">
                 <Darkmode/>
             </MDBNavbarItem>
 
-            <MDBNavbarItem className = "d-flex w-auto mb-2 me-2 my-2">
-                <FaUserCircle size={28}/>
+            <MDBNavbarItem className = "d-flex w-auto me-2 my-2" href="login">
+                <MDBNavbarLink active aria-current='page' href='login' className="link-hover">
+                    <FaUserCircle size={28}/>
+                </MDBNavbarLink>
             </MDBNavbarItem>
 
             
