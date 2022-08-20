@@ -25,7 +25,7 @@ const Navbar = () => {
     const [showBasic, setShowBasic] = useState(false);
 
     return(
-        <MDBNavbar expand='md' light bgColor='light' className="block-container justify-content-center w-75 mx-auto">
+        <MDBNavbar sticky expand='md' light bgColor='light' className="block-container justify-content-center w-75 mx-auto">
         <MDBContainer fluid>
             <MDBNavbarBrand href='home'>
                 <img src={logo} alt="logo" className="img-fluid" style={{height: "5vh"}}/>

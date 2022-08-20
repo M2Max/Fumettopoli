@@ -25,7 +25,8 @@ export default function MainSwiper() {
             delay: 2500,
             disableOnInteraction: false,
             }} 
-            modules={[Pagination, Autoplay]} className="mySwiper"
+            modules={[Pagination, Autoplay]} 
+            className="main-swiper"
         >
             <SwiperSlide><img src={Slide1} alt="Slide 1" /></SwiperSlide>
             <SwiperSlide><img src={Slide2} alt="Slide 2" /></SwiperSlide>
