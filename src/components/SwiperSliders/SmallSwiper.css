@@ -1,7 +1,7 @@
 .small-swiper {
     margin-top: 3%;
-    width: 60%;
-    height: 30%;
+    width: 45%;
+    height: 35%;
 }
 
 .small-swiper .swiper-slide {
@@ -35,4 +35,34 @@
 .small-swiper .swiper-pagination-bullet-active{
     background-color: var(--primary) !important;
 }
+
+@media (max-width: 768px) {
+
+    .small-swiper{
+        width: 90vw !important;
+        margin: 0 5vw !important;
+        height: 38vh;
+    }
+
+    .small-swiper .swiper-slide {
+        width: 40vw !important;
+        height: 33vh;
+    }
     
+}
+
+@media (max-width: 1600px) {
+
+    .small-swiper{
+        width: 70%;
+    }
+    
+}
+
+@media (max-width: 1280px) {
+
+    .small-swiper{
+        width: 80%;
+    }
+    
+}

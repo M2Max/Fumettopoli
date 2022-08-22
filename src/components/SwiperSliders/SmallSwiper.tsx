@@ -27,6 +27,7 @@ export default function SmallSwiper() {
                 delay: 3000,
                 disableOnInteraction: false
             }}
+            centeredSlides={true}
             modules={[Pagination, Autoplay]}
             className="small-swiper"
         >

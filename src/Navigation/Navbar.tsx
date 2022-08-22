@@ -4,16 +4,9 @@ import {
     MDBNavbar,
     MDBNavbarBrand,
     MDBNavbarToggler,
-    MDBIcon,
-    MDBNavbarNav,
     MDBNavbarItem,
     MDBNavbarLink,
     MDBBtn,
-    MDBDropdown,
-    MDBDropdownToggle,
-    MDBDropdownMenu,
-    MDBDropdownItem,
-    MDBDropdownLink,
     MDBCollapse,
     MDBInputGroup
   } from 'mdb-react-ui-kit';
@@ -80,8 +73,8 @@ const Navbar = () => {
 
             
             <MDBInputGroup tag="form" className='d-flex w-auto mb-2 my-2'>
-                <input className='form-control search-bar' placeholder="Type query" aria-label="Search" type='Search' />
-                <MDBBtn className="search-button">Search</MDBBtn>
+                <input className='form-control search-bar' placeholder="" aria-label="Search" type='Search' />
+                <MDBBtn className="search-button normal-text">Search</MDBBtn>
             </MDBInputGroup>
             </MDBCollapse>
         </MDBContainer>

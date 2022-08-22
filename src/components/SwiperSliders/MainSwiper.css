@@ -37,4 +37,13 @@
     background-color: var(--primary) !important;
 }
 
+@media (max-width: 768px) {
+    .main-swiper .swiper-slide img {
+        width: 100vw;
+        height: 33vh;
+    }
+}
+   
+@media (max-width: 1200px) {
+}
   
