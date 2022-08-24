@@ -1,0 +1,11 @@
+.product-slide{
+    height: 90%;
+    width: 100%;
+}
+
+.add-to-cart{
+    display: block;
+    background-color: var(--primary) !important;
+    color: var(--on-primary) !important;
+    border-radius: 4px;
+}

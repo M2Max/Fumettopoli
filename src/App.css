@@ -5,13 +5,6 @@
   padding: 20px;
   transition: all .5s;
 }
-button {
-  color: var(--text-primary);
-  background-color: var(--background);
-  border: none;
-  float: right;
-  transition: all .5s;
-}
 
 .block-container{
   background-color: var(--primary) !important;

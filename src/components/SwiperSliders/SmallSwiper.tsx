@@ -10,15 +10,16 @@ import "./SmallSwiper.css";
 
 // import required modules
 import { Pagination, Autoplay } from "swiper";
+import ProductSlide from "../ProductSlide/ProductSlide";
 
 export default function SmallSwiper() {
   return (
     <>
         <Swiper
-            slidesPerView={3}
-            spaceBetween={30}
-            slidesPerGroup={1}
+            slidesPerView='auto'
+            loopedSlides={5}
             loop={true}
+            loopFillGroupWithBlank={false}
             pagination={{
             clickable: true,
             dynamicBullets: true,
@@ -31,15 +32,9 @@ export default function SmallSwiper() {
             modules={[Pagination, Autoplay]}
             className="small-swiper"
         >
-            <SwiperSlide>Slide 1</SwiperSlide>
-            <SwiperSlide>Slide 2</SwiperSlide>
-            <SwiperSlide>Slide 3</SwiperSlide>
-            <SwiperSlide>Slide 4</SwiperSlide>
-            <SwiperSlide>Slide 5</SwiperSlide>
-            <SwiperSlide>Slide 6</SwiperSlide>
-            <SwiperSlide>Slide 7</SwiperSlide>
-            <SwiperSlide>Slide 8</SwiperSlide>
-            <SwiperSlide>Slide 9</SwiperSlide>
+            <SwiperSlide><ProductSlide/></SwiperSlide>
+            <SwiperSlide><ProductSlide/></SwiperSlide>
+            <SwiperSlide><ProductSlide/></SwiperSlide>
         </Swiper>
         </>
   );
