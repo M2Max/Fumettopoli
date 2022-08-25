@@ -1,5 +1,6 @@
 .App {
   color: var(--on-primary);
+  height: 100vh !important;
   font-size: large;
   font-weight: bold;
   padding: 20px;
@@ -17,6 +18,10 @@
 }
 
 .block-container a:hover{
+  color: var(--primary-variant) !important;
+}
+
+.block-container a:active{
   color: var(--primary-variant) !important;
 }
 
@@ -45,6 +50,10 @@
 }
 
 .search-button:hover{
+  background-color: var(--primary-variant);
+}
+
+.search-button:active{
   background-color: var(--primary-variant);
 }
 

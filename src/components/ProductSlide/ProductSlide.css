@@ -8,4 +8,10 @@
     background-color: var(--primary) !important;
     color: var(--on-primary) !important;
     border-radius: 4px;
+    transition: opacity .5s;
 }
+
+.add-to-cart:hover{
+    opacity: 0.7;
+}
+

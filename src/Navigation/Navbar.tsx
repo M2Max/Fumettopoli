@@ -12,7 +12,7 @@ import {
   } from 'mdb-react-ui-kit';
 import Darkmode from "./Darkmode";
 import logo from "../Resources/logo.png";
-import { FaBars, FaUserCircle } from "react-icons/fa";
+import { FaBars, FaShoppingCart, FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
     const [showBasic, setShowBasic] = useState(false);
@@ -63,13 +63,17 @@ const Navbar = () => {
             
             <MDBNavbarItem float-end className = "d-flex w-auto ms-auto me-2 my-2">
                 <Darkmode/>
-            </MDBNavbarItem>
-
-            <MDBNavbarItem className = "d-flex w-auto me-2 my-2" href="login">
-                <MDBNavbarLink active aria-current='page' href='login' className="link-hover">
+                <MDBNavbarLink active aria-current='page' href='login' className="link-hover mx-1">
                     <FaUserCircle size={28}/>
                 </MDBNavbarLink>
+                <MDBNavbarLink active aria-current='page' href='login' className="link-hover mx-1">
+                    <FaShoppingCart size={28}/>
+                </MDBNavbarLink>
             </MDBNavbarItem>
+
+            {/* <MDBNavbarItem className = "d-flex w-auto me-2 my-2" href="login">
+                
+            </MDBNavbarItem> */}
 
             
             <MDBInputGroup tag="form" className='d-flex w-auto mb-2 my-2'>
