@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import useLocalStorage from 'use-local-storage';
-import { ChangeEventHandler } from "react";
 import "../index.css";
 import { FaRegMoon, FaSun } from 'react-icons/fa';
 

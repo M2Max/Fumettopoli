@@ -66,7 +66,7 @@ const Navbar = () => {
                 <MDBNavbarLink active aria-current='page' href='login' className="link-hover mx-1">
                     <FaUserCircle size={28}/>
                 </MDBNavbarLink>
-                <MDBNavbarLink active aria-current='page' href='login' className="link-hover mx-1">
+                <MDBNavbarLink active aria-current='page' href='cart' className="link-hover mx-1">
                     <FaShoppingCart size={28}/>
                 </MDBNavbarLink>
             </MDBNavbarItem>
