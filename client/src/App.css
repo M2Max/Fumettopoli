@@ -90,6 +90,12 @@
   color: var(--on-primary);
 }
 
+.cormorant-bold{
+  font-family: 'Cormorant', serif;
+  font-weight: bold;
+  color: var(--on-primary);
+}
+
 @media (max-width: 768px) {
   .App{
     padding: 20px 0 !important;

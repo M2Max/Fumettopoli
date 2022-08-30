@@ -1,5 +1,9 @@
-const ShoppingCart = () => {
+import useLoginStatus from "../../Hooks/useLoginStatus";
 
+
+const ShoppingCart = () => {
+    useLoginStatus();
+    
     return (
         <>
         </>

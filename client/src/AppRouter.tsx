@@ -11,7 +11,7 @@ function AppRouter() {
                 <Route path="/home" element={ <Homepage/>} />
                 <Route path="/login" element={ <Login />} />
                 <Route path="/cart" element={ <ShoppingCart />} />
-                <Route path="/" element={<Navigate replace to="/home" />} />
+                <Route path="*" element={<Navigate replace to="/home" />} />
             </Routes>
         </BrowserRouter>
     )

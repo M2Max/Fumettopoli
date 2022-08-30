@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;1,700&display=swap');
 
 :root {
   --primary: #2F78C5;
@@ -36,7 +36,7 @@ code {
   --primary-variant: #8f39f9;
   --secondary: #03DAC6;
   --background: #222222;
-  --error: #CF6679;
+  --error: #B00020;
   --on-primary: #2b2a29;
   --on-background: #FFFFFF;
   --on-error: #000000;

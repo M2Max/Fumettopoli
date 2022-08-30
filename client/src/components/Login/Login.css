@@ -29,7 +29,22 @@
     box-shadow: 1px 0 0 0 var(--primary-variant),0 -1px 0 0 var(--primary-variant),0 1px 0 0 var(--primary-variant);
 }
 
+.invalid-feedback{
+    font-family: 'Cormorant', serif;
+    font-weight: bold;
+    color: var(--error);
+}
+
 @media (max-width: 768px) {
+
+    #signup-tab .card-body{
+        padding: 1.5rem !important;
+    }
+
+    .card{
+        max-width: 80vw !important;
+    }
+
     .card-body{
         width: 80vw !important;
     }
