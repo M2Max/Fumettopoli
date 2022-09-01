@@ -1,12 +1,12 @@
 const sql = require("../connection/connection.js");
-// constructor
-const User = function(user) {
-  this.username   = user.username;
-  this.password   = user.password;
-  this.firstname  = user.firstname;
-  this.lastname   = user.lastname;
-  this.address    = user.address;
-};
+
+const User = function(username, password, firstname, lastname, address) {
+  this.username   = username;
+  this.password   = password;
+  this.firstname  = firstname;
+  this.lastname   = lastname;
+  this.address    = address;
+}
 
 User.findOne = (username, result) => {
   sql.query(`SELECT * FROM user WHERE Username = "${username}"`, (err, res) => {
@@ -16,7 +16,6 @@ User.findOne = (username, result) => {
         return;
       }
       if (res.length) {
-        console.log("Found User: ", res[0]);
         result(null, res[0]);
         return;
       }
@@ -33,7 +32,6 @@ User.Create = (user, result) => {
       result(err, null);
       return;
     }
-    console.log("created tutorial: ", { id: res.insertId, ...user });
     result(null, { id: res.insertId, ...user });
   });
 }

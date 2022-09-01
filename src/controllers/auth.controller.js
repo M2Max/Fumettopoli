@@ -1,17 +1,16 @@
 const User = require("../models/user.model.js");
 var bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("../config/auth.config.js")
 
 exports.signup = (req, res) => {
-    let newUser = User({
-        username: req.body.username,
-        password: bcrypt.hashSync(req.body.password, 8),
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        address: req.body.address
-    });
-    
-    console.log(newUser);
-    
+
+    let newUser = new User(
+        req.body.username,
+        bcrypt.hashSync(req.body.password, 8),
+        req.body.firstname,
+        req.body.lastname,
+        req.body.address);
 
     User.Create(newUser, (err, data) => {
         if(err) {
@@ -32,7 +31,7 @@ exports.signin = (req, res) => {
         }
         var passwordIsValid = bcrypt.compareSync(
             req.body.password,
-            data.password
+            data.Password
           );
         if (!passwordIsValid) {
             return res.status(401).send({
@@ -44,12 +43,26 @@ exports.signin = (req, res) => {
             expiresIn: 86400 // 24 hours
         });
         res.status(200).send({
-            id:             data.id,
-            username:       data.username,
-            firstname:      data.firstname,
-            lastname:       data.lastname,
-            address:        data.lastname,
+            id:             data.ID,
+            username:       data.Username,
+            firstname:      data.Firstname,
+            lastname:       data.Lastname,
+            address:        data.Address,
             accessToken:    token
         });
     });
+}
+
+exports.getUser = (req, res) => {
+    
+    User.findOne(req.body.username, (err, data) => {
+        if(err)
+            if(err.kind === "not_found")
+                return res.status(404).send({
+                    message: "User not found!"
+                });
+        return res.status(200).send({
+            id: data.id
+        })
+    })
 }
