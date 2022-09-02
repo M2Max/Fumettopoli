@@ -14,10 +14,19 @@ import {
 from 'mdb-react-ui-kit';
 
 import "./Login.css";
-import e from 'express';
+import axios from "axios";
+
+axios.defaults.baseURL = 'http://localhost:8080/api';
+const method = "post";
+const headers = {
+  "accept": '*/*',
+  "Content-type": "application/json"
+};
 
 function Login() {
-
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState('');
+  const [loading, setloading] = useState(true);
   const [justifyActive, setJustifyActive] = useState('tab1');;
 
   const handleJustifyClick = (value: any) => {
@@ -31,8 +40,10 @@ function Login() {
   const fieldsCheck = () => {
     if (justifyActive === 'tab1'){
       invalidation("login");
+      signIn();
     } else {
       invalidation("signup");
+      signUp();
     }
   }
 
@@ -44,6 +55,72 @@ function Login() {
             element.classList.add("is-invalid");
       }
   }
+
+  const signUp = () => {
+    const username = document.getElementById("signupUsername") as HTMLInputElement;
+    const firstname = document.getElementById("signupName") as HTMLInputElement;
+    const lastname = document.getElementById("signupLast") as HTMLInputElement;
+    const address = document.getElementById("signupAddress") as HTMLInputElement;
+    const password = document.getElementById("signupPassword") as HTMLInputElement;
+    
+    const endopoint = "/auth/signup";
+    const body = JSON.stringify({
+      username: username.value,
+      password: password.value,
+      firstname: firstname.value,
+      lastname: lastname.value,
+      address: address.value
+    })
+
+    axios({
+      method: method,
+      url: endopoint,
+      headers: headers,
+      data: body
+    }).then((res: any) => {
+      setResponse(res.data);
+    })
+    .catch((err: any) => {
+        setError(err);
+    })
+    .finally(() => {
+        setloading(false);
+    });
+
+    if(response !== null)
+      console.log(response);
+      
+  }
+
+  const signIn = () => {
+    const username = document.getElementById("loginUsername") as HTMLInputElement;
+    const password = document.getElementById("loginPassword") as HTMLInputElement;
+    
+    const endopoint = "/auth/signin";
+    const body = JSON.stringify({
+      username: username.value,
+      password: password.value,
+    })
+
+    axios({
+      method: method,
+      url: endopoint,
+      headers: headers,
+      data: body
+    }).then((res: any) => {
+      setResponse(res.data);
+    })
+    .catch((err: any) => {
+        setError(err);
+    })
+    .finally(() => {
+        setloading(false);
+    });
+
+    if(response !== null)
+      console.log(response);
+  }
+
 
   return (
     <MDBContainer fluid>

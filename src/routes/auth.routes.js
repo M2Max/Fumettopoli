@@ -10,8 +10,8 @@ module.exports = function(app) {
     );
     next();
   });
-  app.post("/api/auth/signup", [verifySignUp.checkDuplicateUsername],controller.signup);
-  app.post("/api/auth/signin", controller.signin);
+  app.post("/api/auth/signup", [verifySignUp.checkDuplicateUsername, controller.signup]);
+  app.post("/api/auth/signin", controller.signin)
   app.post("/api", (req, res, next) => {
     res.status(400).send({message: "Use /api/auth/signin or /api/auth/signup"});
   })

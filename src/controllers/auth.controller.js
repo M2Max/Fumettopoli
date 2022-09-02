@@ -22,6 +22,7 @@ exports.signup = (req, res) => {
 }
 
 exports.signin = (req, res) => {
+
     User.findOne(req.body.username, (err, data) => {
         if(err){
             if(err.kind === "not_found")
