@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     MDBContainer,
     MDBNavbar,
@@ -13,9 +13,23 @@ import {
 import Darkmode from "./Darkmode";
 import logo from "../Resources/logo.png";
 import { FaBars, FaShoppingCart, FaUserCircle } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 
 const Navbar = () => {
     const [showBasic, setShowBasic] = useState(false);
+    const [logged, setLogged] = useState(true);
+
+    useEffect(() => {
+        if(sessionStorage.getItem("logged-user") === null)
+            setLogged(false);
+        else
+            setLogged(true);
+    }, [logged])
+
+    const logout = () => {
+        sessionStorage.removeItem("logged-user");
+        setLogged(false);
+    }
 
     return(
         <MDBNavbar sticky expand='md' light bgColor='light' className="block-container justify-content-center w-75 mx-auto">
@@ -63,9 +77,14 @@ const Navbar = () => {
             
             <MDBNavbarItem float-end className = "d-flex w-auto ms-auto me-2 my-2">
                 <Darkmode/>
-                <MDBNavbarLink active aria-current='page' href='login' className="link-hover mx-1">
-                    <FaUserCircle size={28}/>
-                </MDBNavbarLink>
+                {logged ? ( <MDBNavbarLink active aria-current='page' onClick={logout} className="link-hover mx-1">
+                                <FiLogOut size={28}/>
+                            </MDBNavbarLink>) 
+                            : 
+                          ( <MDBNavbarLink active aria-current='page' href='login' className="link-hover mx-1">
+                                <FaUserCircle size={28}/>
+                            </MDBNavbarLink>)
+                }
                 <MDBNavbarLink active aria-current='page' href='cart' className="link-hover mx-1">
                     <FaShoppingCart size={28}/>
                 </MDBNavbarLink>

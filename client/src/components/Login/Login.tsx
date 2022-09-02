@@ -15,6 +15,7 @@ from 'mdb-react-ui-kit';
 
 import "./Login.css";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 axios.defaults.baseURL = 'http://localhost:8080/api';
 const method = "post";
@@ -30,7 +31,8 @@ function Login() {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState('');
   const [loading, setloading] = useState(true);
-  const [justifyActive, setJustifyActive] = useState('tab1');;
+  const [justifyActive, setJustifyActive] = useState('tab1');
+  let navigate = useNavigate();
 
   const handleJustifyClick = (value: any) => {
     if (value === justifyActive) {
@@ -42,24 +44,29 @@ function Login() {
 
   const fieldsCheck = () => {
     if (justifyActive === 'tab1'){
-      invalidation("login");
-      signIn(document.getElementById("loginUsername") as HTMLInputElement, document.getElementById("loginPassword") as HTMLInputElement);
+      signIn(document.getElementById("loginUsername") as HTMLInputElement, document.getElementById("loginPassword") as HTMLInputElement, invalidation("login"));
     } else {
-      invalidation("signup");
-      signUp();
+      signUp(invalidation("signup"));
     }
   }
 
   const invalidation = (type: string) => {
     const Elements = document.querySelectorAll("input."+type);
+    let validFields: boolean = true;
 
+      // eslint-disable-next-line no-cond-assign
       for (var i = 0, element; element = Elements[i] as HTMLInputElement; i++) {
-          if(element.value === "")
+          if(element.value === ""){
             element.classList.add("is-invalid");
+            validFields = false;
+          }
       }
+    return validFields;
   }
 
-  const signUp = async () => {
+  const signUp = async (validFields: boolean) => {
+    if (!validFields)
+      return;
     const username = document.getElementById("signupUsername") as HTMLInputElement;
     const firstname = document.getElementById("signupName") as HTMLInputElement;
     const lastname = document.getElementById("signupLast") as HTMLInputElement;
@@ -94,7 +101,7 @@ function Login() {
     .finally(() => {
         setloading(false);
         if(canSignIn){
-          signIn(username, password);
+          signIn(username, password, true);
         }
     });
     
@@ -102,7 +109,9 @@ function Login() {
       
   }
 
-  const signIn = (username: HTMLInputElement, password: HTMLInputElement) => {
+  const signIn = (username: HTMLInputElement, password: HTMLInputElement, validFields: boolean) => {
+    if (!validFields)
+      return;
 
     const endopoint = "/auth/signin";
     const body = JSON.stringify({
@@ -126,6 +135,8 @@ function Login() {
     })
     .finally(() => {
         setloading(false);
+        if(sessionStorage.getItem("logged-user") !== null)
+          navigate("/home");
     });
 
   }
