@@ -22,6 +22,9 @@ const headers = {
   "accept": '*/*',
   "Content-type": "application/json"
 };
+const delay = (ms: number) => new Promise(
+  resolve => setTimeout(resolve, ms)
+);
 
 function Login() {
   const [response, setResponse] = useState(null);
@@ -40,7 +43,7 @@ function Login() {
   const fieldsCheck = () => {
     if (justifyActive === 'tab1'){
       invalidation("login");
-      signIn();
+      signIn(document.getElementById("loginUsername") as HTMLInputElement, document.getElementById("loginPassword") as HTMLInputElement);
     } else {
       invalidation("signup");
       signUp();
@@ -56,12 +59,13 @@ function Login() {
       }
   }
 
-  const signUp = () => {
+  const signUp = async () => {
     const username = document.getElementById("signupUsername") as HTMLInputElement;
     const firstname = document.getElementById("signupName") as HTMLInputElement;
     const lastname = document.getElementById("signupLast") as HTMLInputElement;
     const address = document.getElementById("signupAddress") as HTMLInputElement;
     const password = document.getElementById("signupPassword") as HTMLInputElement;
+    let canSignIn: boolean = false;
     
     const endopoint = "/auth/signup";
     const body = JSON.stringify({
@@ -79,23 +83,27 @@ function Login() {
       data: body
     }).then((res: any) => {
       setResponse(res.data);
+      setError('');
+      setloading(true);
+      canSignIn = true;
     })
     .catch((err: any) => {
         setError(err);
+        canSignIn = false;
     })
     .finally(() => {
         setloading(false);
+        if(canSignIn){
+          signIn(username, password);
+        }
     });
-
-    if(response !== null)
-      console.log(response);
+    
+    
       
   }
 
-  const signIn = () => {
-    const username = document.getElementById("loginUsername") as HTMLInputElement;
-    const password = document.getElementById("loginPassword") as HTMLInputElement;
-    
+  const signIn = (username: HTMLInputElement, password: HTMLInputElement) => {
+
     const endopoint = "/auth/signin";
     const body = JSON.stringify({
       username: username.value,
@@ -109,6 +117,9 @@ function Login() {
       data: body
     }).then((res: any) => {
       setResponse(res.data);
+      sessionStorage.setItem("logged-user", JSON.stringify(res.data));
+      setError('');
+      setloading(true);
     })
     .catch((err: any) => {
         setError(err);
@@ -117,8 +128,6 @@ function Login() {
         setloading(false);
     });
 
-    if(response !== null)
-      console.log(response);
   }
 
 

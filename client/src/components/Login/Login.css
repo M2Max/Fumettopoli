@@ -35,6 +35,10 @@
     color: var(--error);
 }
 
+.login, .signup {
+    color: var(--on-primary) !important;
+}
+
 @media (max-width: 768px) {
 
     #signup-tab .card-body{
