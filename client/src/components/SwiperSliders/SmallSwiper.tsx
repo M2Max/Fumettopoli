@@ -9,7 +9,7 @@ import "./SmallSwiper.css";
 
 // import required modules
 import { Pagination, Autoplay } from "swiper";
-import ProductSlide from "../ProductSlide/ProductSlide";
+import ProductSlide from "./ProductSlide/ProductSlide";
 
 export default function SmallSwiper() {
   return (
