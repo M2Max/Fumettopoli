@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2022 at 06:24 PM
+-- Generation Time: Sep 20, 2022 at 08:12 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cart_user` (
-  `UsersCart` varchar(16) NOT NULL,
+  `UsersCart` int(32) NOT NULL,
   `ProductInCart` varchar(256) NOT NULL,
   `QuantityInCart` int(16) NOT NULL,
   `TotalPriceCart` double NOT NULL
@@ -53,7 +53,7 @@ CREATE TABLE `category` (
 CREATE TABLE `orders` (
   `ID` varchar(32) NOT NULL,
   `Total` double NOT NULL,
-  `OrderUser` varchar(16) NOT NULL
+  `OrderUser` int(32) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -101,12 +101,22 @@ CREATE TABLE `product_category` (
 --
 
 CREATE TABLE `user` (
+  `ID` int(32) NOT NULL,
   `Username` varchar(16) NOT NULL,
-  `Password` varchar(16) NOT NULL,
+  `Password` varchar(255) NOT NULL,
   `Firstname` varchar(16) NOT NULL,
   `Lastname` varchar(16) NOT NULL,
   `Address` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`ID`, `Username`, `Password`, `Firstname`, `Lastname`, `Address`) VALUES
+(12, 'Mamox', '$2a$08$wekLJa.g3.xhm84W1j9sW.nudGVDTEwXOa3ZzjxDspSY/OLrtJ57q', 'Maximiliano', 'Mamone', 'Via Bargone Case Senni 17'),
+(13, 'Miriano', '$2a$08$VhfE5JXIggncrmKjmNH6QeCebHhdFm5OfO3sOPu0tmQTdqWDO9PE2', 'Maximiliano', 'Mamone', 'Via Bargone Case Senni 17'),
+(26, 'Giadina', '$2a$08$dgEQa9NCv6UoyfDbm2E90e7x720VjoNlbvVQR24HSTjGY2dEyw2Gm', 'Giada', 'Ghisoni', 'Via bargone lombasino 20');
 
 --
 -- Indexes for dumped tables
@@ -130,7 +140,7 @@ ALTER TABLE `category`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `user_order` (`OrderUser`);
+  ADD KEY `user_order_id` (`OrderUser`);
 
 --
 -- Indexes for table `product`
@@ -156,7 +166,17 @@ ALTER TABLE `product_category`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`Username`);
+  ADD PRIMARY KEY (`ID`,`Username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `ID` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables
@@ -167,13 +187,13 @@ ALTER TABLE `user`
 --
 ALTER TABLE `cart_user`
   ADD CONSTRAINT `product_in_cart` FOREIGN KEY (`ProductInCart`) REFERENCES `product` (`Name`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `users_cart` FOREIGN KEY (`UsersCart`) REFERENCES `user` (`Username`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `user_cart_id` FOREIGN KEY (`UsersCart`) REFERENCES `user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `user_order` FOREIGN KEY (`OrderUser`) REFERENCES `user` (`Username`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `user_order_id` FOREIGN KEY (`OrderUser`) REFERENCES `user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `products_ordered`
