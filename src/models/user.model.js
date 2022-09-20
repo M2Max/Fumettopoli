@@ -36,5 +36,23 @@ User.Create = (user, result) => {
   });
 }
 
+User.fetchCart = (id, result) => {
+  sql.query(`SELECT c.productInCart, c.quantityInCart, c.totalPriceCart FROM user u JOIN cart_user c ON u.id = c.userscart WHERE u.id = "${id}"`, (err, res) => {
+      if (err) {
+        console.log("Error: ", err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        console.log(res);
+        result(null, res);
+        return;
+      }
+
+      result({ kind: "not_found" }, null);
+    });
+};
+
+
 
 module.exports = User;
