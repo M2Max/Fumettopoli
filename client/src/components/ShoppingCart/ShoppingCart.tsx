@@ -32,6 +32,7 @@ const ShoppingCart = () => {
     const [error, setError] = useState('');
     const [loading, setloading] = useState(true);
     const [grid, setGrid] = useState<any>();
+    const [total, setTotal] = useState(0);
 
     useEffect(() => {
         if(response === null)
@@ -39,9 +40,7 @@ const ShoppingCart = () => {
         let cart = sessionStorage.getItem("user-cart")
         if (cart !== null){
             let jsonCart = JSON.parse(cart) as productObject[];
-            let count = 0;
             const temp = jsonCart.map((product: productObject) => {
-                console.log(product);
                 
                 return  <div key={product.productInCart} className="col-md-4">
                             <CartProductSlide productName={product.productInCart} quantity={product.quantityInCart} totalPrice={product.totalPriceCart}/>
@@ -81,6 +80,22 @@ const ShoppingCart = () => {
             });            
         }
 
+        cartTotal();
+
+    }
+
+    const cartTotal = () => {
+        let cart = sessionStorage.getItem("user-cart")
+        if (cart !== null){
+            let jsonCart = JSON.parse(cart) as productObject[];
+            let sum = 0;
+            jsonCart.map((product : productObject) => {
+                sum += product.totalPriceCart;
+            })
+            setTotal(sum);
+            console.log(sum);
+            
+        }
     }
     
     return (
@@ -89,6 +104,9 @@ const ShoppingCart = () => {
                 <div className="row">
                     {grid}
                 </div>
+            </div>
+            <div className="container w-50">
+                <p className="cormorant-bold text-black">Cart total is {total}</p>
             </div>
         </>
     );
