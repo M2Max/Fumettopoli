@@ -14,3 +14,13 @@ exports.getCart = (req, res) => {
         return res.status(200).send(data)
     })
 }
+
+exports.removeItem = (req, res) => {
+
+    User.removeFromCart(req.body.id, req.body.productName, (err, data) => {
+        if(err)
+            return res.status(500).send({message: "Error deleting product"});
+        return res.status(200).send(data);
+    })
+
+}

@@ -37,7 +37,7 @@ User.Create = (user, result) => {
 }
 
 User.fetchCart = (id, result) => {
-  sql.query(`SELECT c.productInCart, c.quantityInCart, c.totalPriceCart FROM user u JOIN cart_user c ON u.id = c.userscart WHERE u.id = "${id}"`, (err, res) => {
+  sql.query(`SELECT c.productInCart, p.Image, c.quantityInCart, c.totalPriceCart FROM user u JOIN cart_user c ON u.id = c.userscart JOIN product p ON p.name = c.productincart WHERE u.id = "${id}"`, (err, res) => {
       if (err) {
         console.log("Error: ", err);
         result(err, null);
@@ -54,5 +54,18 @@ User.fetchCart = (id, result) => {
 };
 
 
+User.removeFromCart = (id, productName, result) => {
+    sql.query(`DELETE FROM cart_user WHERE cart_user.UsersCart = "${id}" AND cart_user.ProductInCart = "${productName}"`, (err, res) => {
+      if (err) {
+        console.log("Error: ", err);
+        result(err, null);
+        return;
+      }
+
+      result(null, { message: "Deleted successfully" });
+    });
+}
+
 
 module.exports = User;
+

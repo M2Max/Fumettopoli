@@ -1,20 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import useLoginStatus from "../../Hooks/useLoginStatus";
+import { userObject } from "../../Interfaces/userObject";
 import ProductSlide from "../SwiperSliders/ProductSlide/ProductSlide";
 import CartProductSlide from "./CartProductSlide/CartProductSlide";
 
-interface userObject {
-    id: number;
-    username: string;
-    firstname: string;
-    lastname: string;
-    address: string;
-    accessToken: string;
-}
-
 interface productObject{
     productInCart: string;
+    Image: string;
     quantityInCart: number;
     totalPriceCart: number;
 }
@@ -41,9 +34,8 @@ const ShoppingCart = () => {
         if (cart !== null){
             let jsonCart = JSON.parse(cart) as productObject[];
             const temp = jsonCart.map((product: productObject) => {
-                
                 return  <div key={product.productInCart} className="col-md-4">
-                            <CartProductSlide productName={product.productInCart} quantity={product.quantityInCart} totalPrice={product.totalPriceCart}/>
+                            <CartProductSlide productInCart={product.productInCart} Image={product.Image} quantityInCart={product.quantityInCart} totalPriceCart={product.totalPriceCart}/>
                         </div>
             })
             setGrid(temp);

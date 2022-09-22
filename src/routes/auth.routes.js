@@ -15,6 +15,7 @@ module.exports = function(app) {
   app.post("/api/auth/signup", [verifySignUp.checkDuplicateUsername, authController.signup]);
   app.post("/api/auth/signin", authController.signin);
   app.post("/api/cart/fetch", [tokenCheck.verifyToken , cartController.getCart]);
+  app.post("/api/cart/remove", [tokenCheck.verifyToken, cartController.removeItem]);
   app.post("/api", (req, res, next) => {
     res.status(400).send({message: "Use /api/auth/signin or /api/auth/signup"});
   })
