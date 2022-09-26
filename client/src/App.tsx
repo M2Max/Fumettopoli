@@ -4,6 +4,7 @@ import AppRouter from './AppRouter';
 import Navbar from './Navigation/Navbar';
 import "swiper/css/bundle";
 import Footer from './Navigation/Footer';
+import axios from 'axios';
 
 function App() {
 

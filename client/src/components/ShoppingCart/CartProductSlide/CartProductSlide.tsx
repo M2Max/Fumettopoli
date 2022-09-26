@@ -53,6 +53,7 @@ const CartProductSlide = (props: productInformation) => {
             .finally(() => {
                 setloading(false);
             });            
+
         }
     }
 
@@ -65,6 +66,7 @@ const CartProductSlide = (props: productInformation) => {
             });
             sessionStorage.setItem("user-cart", JSON.stringify(jsonCart));
         }
+        window.location.reload();
     }
 
     return (

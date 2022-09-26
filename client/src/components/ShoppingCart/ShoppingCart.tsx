@@ -1,16 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import useLoginStatus from "../../Hooks/useLoginStatus";
+import { productObject } from "../../Interfaces/productInterfaces";
 import { userObject } from "../../Interfaces/userObject";
 import ProductSlide from "../SwiperSliders/ProductSlide/ProductSlide";
 import CartProductSlide from "./CartProductSlide/CartProductSlide";
 
-interface productObject{
-    productInCart: string;
-    Image: string;
-    quantityInCart: number;
-    totalPriceCart: number;
-}
 
 axios.defaults.baseURL = 'http://localhost:8080/api';
 const method = "post";
