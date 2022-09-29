@@ -9,3 +9,14 @@ exports.getList = (req, res) => {
     });
 
 }
+
+exports.getProduct = (req, res) => {
+
+    Product.findOne(req.body.name, (err, data) => {
+        if (err)
+            if(err.kind === 'not_found')
+                return res.status(404).send({message: "Product not found"});
+        return res.status(200).send(data);
+    })
+
+}

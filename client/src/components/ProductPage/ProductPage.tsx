@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate, useNavigationType } from "react-router-dom";
 import { fullProductObject } from "../../Interfaces/productInterfaces";
 import { userObject } from "../../Interfaces/userObject";
 import { BASE_URL, CART_ADD, HEADERS, METHOD } from "../../Utilities/Constants";
@@ -13,6 +13,7 @@ const ProductPage = () => {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState('');
     const [loading, setloading] = useState(true);
+    const navigate = useNavigate();
 
 
     const array = Array.from({length: data.QuantityAvailable}, (_, i) => i + 1)
@@ -61,17 +62,20 @@ const ProductPage = () => {
                 setloading(false);
             });            
         }
+    
+        navigate("/cart");
+        
     }
 
     return (
         <div className="homepage-container w-75 vh-100 pt-2 mx-auto text-center">
             <img src={data.Image} alt="" className="img-fluid"/>
-            <h3 className="normal-text ">{data.Name}</h3>
-            <p>{data.Description}</p>
+            <h3 className="bold-text">{data.Name}</h3>
+            <p className = "cormorant-normal" style={{color: "var(--on-background)"}}>{data.Description}</p>
             <Form.Select aria-label="Quantity" id="quantitySelected" defaultValue={1} onChange={(e: any) => { priceCalc(e, data.Price); }}>
                 {quantitySelector}
             </Form.Select>
-            <p>{price} €</p>
+            <p className = "cormorant-bold" style={{color: "var(--on-background)"}}>{price} €</p>
             <button className="add-to-cart btn mx-auto mt-5 normal-text" onClick={addToCart}>Add to Cart</button>
         </div>
     );

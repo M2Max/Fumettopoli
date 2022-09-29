@@ -15,15 +15,26 @@ import { BASE_URL, HEADERS, METHOD, SWIPER_FETCH } from "../../Utilities/Constan
 import { userObject } from "../../Interfaces/userObject";
 import axios from "axios";
 import { productSlideObject } from "../../Interfaces/productInterfaces";
+import { setgid } from "process";
+import { setOriginalNode } from "typescript";
 
 export default function SmallSwiper(props: any) {
     const [response, setResponse] = useState<productSlideObject[] | null>(null);
     const [error, setError] = useState('');
     const [loading, setloading] = useState(true);
+    const [list, setList] = useState<any>(null);
 
     useEffect(() => {
-        getList();
-    }, [])
+        if(response === null)
+            getList();
+        else{
+            const temp = response.map((product: productSlideObject) => {
+                return <SwiperSlide><ProductSlide Image={product.Image} Name={product.Name}/></SwiperSlide>
+            })
+            setList(temp);
+        }
+
+    }, [response])
 
     const getList = () => {
 
@@ -56,7 +67,7 @@ export default function SmallSwiper(props: any) {
         <>
             <Swiper
                 slidesPerView='auto'
-                loopedSlides={5}
+                loopedSlides={10}
                 loop={true}
                 loopFillGroupWithBlank={false}
                 pagination={{
@@ -71,9 +82,7 @@ export default function SmallSwiper(props: any) {
                 modules={[Pagination, Autoplay]}
                 className="small-swiper"
             >
-                <SwiperSlide><ProductSlide/></SwiperSlide>
-                <SwiperSlide><ProductSlide/></SwiperSlide>
-                <SwiperSlide><ProductSlide/></SwiperSlide>
+                {list}
             </Swiper>
         </>
   );

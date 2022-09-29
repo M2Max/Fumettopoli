@@ -21,4 +21,5 @@ module.exports = function(app) {
   app.post("/api/cart/add", [tokenCheck.verifyToken, cartController.addItem]);
 
   app.post("/api/product/show", productController.getList);
+  app.post("/api/product/info", productController.getProduct);
 };

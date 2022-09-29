@@ -1,26 +1,54 @@
-import React from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { fullProductObject, productSlideObject } from "../../../Interfaces/productInterfaces";
 import Slide2 from "../../../Resources/alice.jpg";
+import { BASE_URL, HEADERS, METHOD, PRODUCT_FETCH } from "../../../Utilities/Constants";
 
 import "./ProductSlide.css";
 
-interface ProductSlide{
-    Name: string;
-    Image: string;
-}
 
-const ProductSlide = (/*props: ProductSlide*/) => {
+const ProductSlide = (props: productSlideObject) => {
+    const [response, setResponse] = useState<fullProductObject | null>(null);
+    const [error, setError] = useState('');
+    const [loading, setloading] = useState(true);
     const navigate = useNavigate();
 
-    const loadPage = () => {
-        //Function to get data from backend
+    useEffect(() => {
+        if(response !== null)
+            navigate('/product', { state: { Name: response?.Name, Category: response?.Category, Description: response?.Description, Image: response?.Image , QuantityAvailable: response?.QuantityAvailable, Price: response?.Price } });
+    }, [response])
 
-        navigate('/product', { state: { Name: "Fumetto 1", Category: "Fumetto", Description: "Ciao sono un fumetto", Image: "https://spacenerd.it/wp-content/uploads/2021/08/one-piece-manga-rischio-stop-weekly-shonen-jump-pericolo-v4-445032.jpg.webp", QuantityAvailable: 10, Price: 10 } });
+    const loadPage = () => {
+        const endpoint = BASE_URL + PRODUCT_FETCH;
+        const body = JSON.stringify({
+            name: props.Name
+        });
+
+        axios({
+            method: METHOD,
+            url: endpoint,
+            headers: HEADERS,
+            data: body
+        }).then((res: any) => {
+            setResponse(res.data);
+            setError('');
+            setloading(true);
+        })
+        .catch((err: any) => {
+            setError(err);
+        })
+        .finally(() => {
+            setloading(false);
+        });   
+
+       
     }
 
     return (
         <div className="container product-slide text-center">
-            <img src={Slide2} alt="" className="img-fluid"/>
+            <img src={props.Image} alt="" className="img-fluid"/>
+            <p>{props.Name}</p>
             <button className="add-to-cart btn mx-auto mt-5 normal-text" onClick={loadPage}>Details</button>
         </div>
     );
