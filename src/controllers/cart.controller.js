@@ -1,7 +1,4 @@
 const User = require("../models/user.model.js");
-var bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const config = require("../config/auth.config.js")
 
 exports.getCart = (req, res) => {
     
