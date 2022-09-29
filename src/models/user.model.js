@@ -44,7 +44,6 @@ User.fetchCart = (id, result) => {
         return;
       }
       if (res.length) {
-        console.log(res);
         result(null, res);
         return;
       }
@@ -67,15 +66,42 @@ User.removeFromCart = (id, productName, result) => {
 }
 
 User.addToCart = (id, productName, quantity, totalPrice, result) => {
-    let query = "INSERT INTO `cart_user` (`UsersCart`, `ProductInCart`, `QuantityInCart`, `TotalPriceCart`) VALUES (?, ?, ?, ?);"    
-    sql.query(query, [id, productName, quantity, totalPrice], (err, res) => {
-      if (err) {
-        console.log("Error: ", err);
-        result(err, null);
-        return;
-      }
-      result(null, { message: "Added to cart successfully"});
-    });
+  let query = "INSERT INTO `cart_user` (`UsersCart`, `ProductInCart`, `QuantityInCart`, `TotalPriceCart`) VALUES (?, ?, ?, ?);"    
+  sql.query(query, [id, productName, quantity, totalPrice], (err, res) => {
+    if (err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    result(null, { message: "Added to cart successfully"});
+  });
+}
+
+User.retrieveFromCart = (name, id, result) => {
+  sql.query(`SELECT * FROM  cart_user c WHERE c.userscart = "${id}" AND c.productincart = "${name}"`, (err, res) => {
+    if (err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    if (res.length) {
+      result(null, res);
+      return;
+    }
+
+    result({ kind: "not_found" }, null);
+  });
+}
+
+User.updateCartItem = (name, id, quantity, price,  result) => {
+  sql.query(`UPDATE cart_user SET QuantityInCart = QuantityInCart + "${quantity}", TotalPriceCart = TotalPriceCart + "${price}" WHERE UsersCart = "${id}" AND ProductInCart = "${name}"`, (err, res) => {
+    if (err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    result(null, { message: "Updated cart successfully"});
+  })
 }
 
 

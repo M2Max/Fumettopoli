@@ -32,7 +32,6 @@ Product.fetchList = (category, result) => {
         return;
       }
       if (res.length) {
-        console.log(res);
         result(null, res);
         return;
       }

@@ -16,6 +16,7 @@ const ShoppingCart = () => {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         if(response === null)
             cartFetch();
         let cart = sessionStorage.getItem("user-cart")
@@ -27,6 +28,7 @@ const ShoppingCart = () => {
                         </div>
             })
             setGrid(temp);
+            cartTotal();
         }
     }, [response])
 
@@ -60,8 +62,6 @@ const ShoppingCart = () => {
             });            
         }
 
-        cartTotal();
-
     }
 
     const cartTotal = () => {
@@ -73,7 +73,6 @@ const ShoppingCart = () => {
                 sum += product.totalPriceCart;
             })
             setTotal(sum);
-            console.log(sum);
             
         }
     }

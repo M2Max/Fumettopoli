@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
-import { Navigate, useLocation, useNavigate, useNavigationType } from "react-router-dom";
+import { Navigate, redirect, useLocation, useNavigate, useNavigationType } from "react-router-dom";
 import { fullProductObject } from "../../Interfaces/productInterfaces";
 import { userObject } from "../../Interfaces/userObject";
 import { BASE_URL, CART_ADD, HEADERS, METHOD } from "../../Utilities/Constants";
@@ -63,7 +63,7 @@ const ProductPage = () => {
             });            
         }
     
-        navigate("/cart");
+        navigate("/cart", {replace: true});
         
     }
 

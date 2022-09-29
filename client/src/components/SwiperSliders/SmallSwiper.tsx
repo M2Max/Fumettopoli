@@ -66,19 +66,18 @@ export default function SmallSwiper(props: any) {
     return (
         <>
             <Swiper
-                slidesPerView='auto'
-                loopedSlides={10}
-                loop={true}
+                slidesPerView={4}
                 loopFillGroupWithBlank={false}
+                loop={true}
                 pagination={{
                 clickable: true,
                 dynamicBullets: true,
                 }}
+                grabCursor={true}
                 autoplay={{
                     delay: 3000,
                     disableOnInteraction: false
                 }}
-                centeredSlides={true}
                 modules={[Pagination, Autoplay]}
                 className="small-swiper"
             >
