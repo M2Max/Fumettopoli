@@ -3,16 +3,9 @@ import { useEffect, useState } from "react";
 import useLoginStatus from "../../Hooks/useLoginStatus";
 import { productObject } from "../../Interfaces/productInterfaces";
 import { userObject } from "../../Interfaces/userObject";
+import { BASE_URL, CART_FETCH, HEADERS, METHOD } from "../../Utilities/Constants";
 import ProductSlide from "../SwiperSliders/ProductSlide/ProductSlide";
 import CartProductSlide from "./CartProductSlide/CartProductSlide";
-
-
-axios.defaults.baseURL = 'http://localhost:8080/api';
-const method = "post";
-const headers = {
-  "accept": '*/*',
-  "Content-type": "application/json"
-};
 
 const ShoppingCart = () => {
     useLoginStatus();
@@ -42,16 +35,16 @@ const ShoppingCart = () => {
         if(user !== null){
             let jsonUser = JSON.parse(user) as userObject;                
 
-            const endopoint = "/cart/fetch";
+            const endpoint = BASE_URL + CART_FETCH;
             const body = JSON.stringify({
                 id: jsonUser.id,
                 accessToken: jsonUser.accessToken,
             })
         
             axios({
-                method: method,
-                url: endopoint,
-                headers: headers,
+                method: METHOD,
+                url: endpoint,
+                headers: HEADERS,
                 data: body
             }).then((res: any) => {
                 setResponse(res.data);

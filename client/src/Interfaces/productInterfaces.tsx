@@ -5,11 +5,16 @@ export interface productObject{
     totalPriceCart: number;
 }
 
-export interface product{
+export interface fullProductObject{
     Name: string;
     Category: string;
     Description: string;
     Image: string;
     QuantityAvailable: number;
     Price: number;
+}
+
+export interface productSlideObject{
+    Name: string;
+    Image: string;
 }

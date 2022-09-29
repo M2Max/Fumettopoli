@@ -2,20 +2,13 @@ import axios from "axios";
 import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import { useLocation } from "react-router-dom";
-import { product } from "../../Interfaces/productInterfaces";
+import { fullProductObject } from "../../Interfaces/productInterfaces";
 import { userObject } from "../../Interfaces/userObject";
-
-axios.defaults.baseURL = 'http://localhost:8080/api';
-const method = "post";
-const headers = {
-  "accept": '*/*',
-  "Content-type": "application/json"
-};
-
+import { BASE_URL, CART_ADD, HEADERS, METHOD } from "../../Utilities/Constants";
 
 const ProductPage = () => {
     const location = useLocation();
-    const data = location.state as product;
+    const data = location.state as fullProductObject;
     const [price, setPrice] = useState(data.Price);
     const [response, setResponse] = useState(null);
     const [error, setError] = useState('');
@@ -49,12 +42,12 @@ const ProductPage = () => {
 
             });
 
-            const endopoint = "/cart/add";
+            const endopoint = BASE_URL + CART_ADD;
         
             axios({
-                method: method,
+                method: METHOD,
                 url: endopoint,
-                headers: headers,
+                headers: HEADERS,
                 data: body
             }).then((res: any) => {
                 setResponse(res.data);

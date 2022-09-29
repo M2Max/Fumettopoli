@@ -16,13 +16,8 @@ from 'mdb-react-ui-kit';
 import "./Login.css";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { AUTH_SIGNIN, AUTH_SIGNUP, BASE_URL, HEADERS, METHOD } from '../../Utilities/Constants';
 
-axios.defaults.baseURL = 'http://localhost:8080/api';
-const method = "post";
-const headers = {
-  "accept": '*/*',
-  "Content-type": "application/json"
-};
 const delay = (ms: number) => new Promise(
   resolve => setTimeout(resolve, ms)
 );
@@ -74,7 +69,7 @@ function Login() {
     const password = document.getElementById("signupPassword") as HTMLInputElement;
     let canSignIn: boolean = false;
     
-    const endopoint = "/auth/signup";
+    const endopoint = BASE_URL + AUTH_SIGNUP;
     const body = JSON.stringify({
       username: username.value,
       password: password.value,
@@ -84,9 +79,9 @@ function Login() {
     })
 
     axios({
-      method: method,
+      method: METHOD,
       url: endopoint,
-      headers: headers,
+      headers: HEADERS,
       data: body
     }).then((res: any) => {
       setResponse(res.data);
@@ -113,16 +108,16 @@ function Login() {
     if (!validFields)
       return;
 
-    const endopoint = "/auth/signin";
+    const endopoint = BASE_URL + AUTH_SIGNIN;
     const body = JSON.stringify({
       username: username.value,
       password: password.value,
     })
 
     axios({
-      method: method,
+      method: METHOD,
       url: endopoint,
-      headers: headers,
+      headers: HEADERS,
       data: body
     }).then((res: any) => {
       setResponse(res.data);
