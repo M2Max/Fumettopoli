@@ -12,11 +12,8 @@ import { Pagination, Autoplay } from "swiper";
 import ProductSlide from "./ProductSlide/ProductSlide";
 import { useEffect, useState } from "react";
 import { BASE_URL, HEADERS, METHOD, SWIPER_FETCH } from "../../Utilities/Constants";
-import { userObject } from "../../Interfaces/userObject";
 import axios from "axios";
 import { productSlideObject } from "../../Interfaces/productInterfaces";
-import { setgid } from "process";
-import { setOriginalNode } from "typescript";
 
 export default function SmallSwiper(props: any) {
     const [response, setResponse] = useState<productSlideObject[] | null>(null);
@@ -66,9 +63,10 @@ export default function SmallSwiper(props: any) {
     return (
         <>
             <Swiper
-                slidesPerView={4}
+                slidesPerView={3}
                 loopFillGroupWithBlank={false}
                 loop={true}
+                loopAdditionalSlides={5}
                 pagination={{
                 clickable: true,
                 dynamicBullets: true,

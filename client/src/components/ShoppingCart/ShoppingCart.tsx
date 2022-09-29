@@ -8,7 +8,7 @@ import ProductSlide from "../SwiperSliders/ProductSlide/ProductSlide";
 import CartProductSlide from "./CartProductSlide/CartProductSlide";
 
 const ShoppingCart = () => {
-    useLoginStatus();
+    const { checkLogin } = useLoginStatus();
     const [response, setResponse] = useState<productObject[] | null>(null);
     const [error, setError] = useState('');
     const [loading, setloading] = useState(true);
@@ -17,6 +17,7 @@ const ShoppingCart = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        checkLogin();
         if(response === null)
             cartFetch();
         let cart = sessionStorage.getItem("user-cart")

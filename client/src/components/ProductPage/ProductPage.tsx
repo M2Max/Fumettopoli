@@ -1,12 +1,14 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from 'react-bootstrap/Form';
-import { Navigate, redirect, useLocation, useNavigate, useNavigationType } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import useLoginStatus from "../../Hooks/useLoginStatus";
 import { fullProductObject } from "../../Interfaces/productInterfaces";
 import { userObject } from "../../Interfaces/userObject";
 import { BASE_URL, CART_ADD, HEADERS, METHOD } from "../../Utilities/Constants";
 
 const ProductPage = () => {
+    const { checkLogin } = useLoginStatus();
     const location = useLocation();
     const data = location.state as fullProductObject;
     const [price, setPrice] = useState(data.Price);
@@ -14,6 +16,10 @@ const ProductPage = () => {
     const [error, setError] = useState('');
     const [loading, setloading] = useState(true);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, [])
 
 
     const array = Array.from({length: data.QuantityAvailable}, (_, i) => i + 1)
@@ -30,6 +36,7 @@ const ProductPage = () => {
     }
 
     const addToCart = () => {
+        checkLogin();
         let user = sessionStorage.getItem("logged-user");
         if (user !== null){
             let objUser = JSON.parse(user) as userObject;
@@ -71,7 +78,7 @@ const ProductPage = () => {
         <div className="homepage-container w-75 vh-100 pt-2 mx-auto text-center">
             <img src={data.Image} alt="" className="img-fluid"/>
             <h3 className="bold-text">{data.Name}</h3>
-            <p className = "cormorant-normal" style={{color: "var(--on-background)"}}>{data.Description}</p>
+            <p className = "cormorant-normal" style={{color: "var(--on-background)", whiteSpace: "pre-line"}}>{data.Description}</p>
             <Form.Select aria-label="Quantity" id="quantitySelected" defaultValue={1} onChange={(e: any) => { priceCalc(e, data.Price); }}>
                 {quantitySelector}
             </Form.Select>

@@ -2,17 +2,17 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-function useLoginStatus() {
+const useLoginStatus = () => {
 
     let navigate = useNavigate();
 
-    useEffect(() => {
+    const checkLogin = () => {
         if (sessionStorage.getItem("logged-user") === null){
-            return navigate("/login");
+            navigate("/login");
         }
-    }, [navigate]);
-
-    return;
+   
+    }
+    return { checkLogin };
 }
 
 export default useLoginStatus;

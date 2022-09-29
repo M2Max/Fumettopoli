@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-import useForceUpdate from "../../../Hooks/useForceUpdate";
 import { userObject } from "../../../Interfaces/userObject";
 
 import "./CartProductSlide.css";

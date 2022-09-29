@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fullProductObject, productSlideObject } from "../../../Interfaces/productInterfaces";
-import Slide2 from "../../../Resources/alice.jpg";
 import { BASE_URL, HEADERS, METHOD, PRODUCT_FETCH } from "../../../Utilities/Constants";
 
 import "./ProductSlide.css";
@@ -48,7 +47,7 @@ const ProductSlide = (props: productSlideObject) => {
     return (
         <div className="container product-slide text-center">
             <img src={props.Image} alt="" className="img-fluid"/>
-            <p>{props.Name}</p>
+            <p className="normal-text" style={{wordBreak: "break-all", whiteSpace: "nowrap", width: "auto", overflow: "hidden"}}>{props.Name}</p>
             <button className="add-to-cart btn mx-auto mt-5 normal-text" onClick={loadPage}>Details</button>
         </div>
     );
