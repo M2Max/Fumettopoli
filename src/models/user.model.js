@@ -66,6 +66,18 @@ User.removeFromCart = (id, productName, result) => {
     });
 }
 
+User.addToCart = (id, productName, quantity, totalPrice, result) => {
+    let query = "INSERT INTO `cart_user` (`UsersCart`, `ProductInCart`, `QuantityInCart`, `TotalPriceCart`) VALUES (?, ?, ?, ?);"    
+    sql.query(query, [id, productName, quantity, totalPrice], (err, res) => {
+      if (err) {
+        console.log("Error: ", err);
+        result(err, null);
+        return;
+      }
+      result(null, { message: "Added to cart successfully"});
+    });
+}
+
 
 module.exports = User;
 
