@@ -36,10 +36,8 @@ const DarkMode = () => {
   useEffect(() => {
     if (defaultDark) {
       setDark();
-      console.log("dark");
     }else{
       setLight();
-      console.log("light");
     }
   }, []);
   

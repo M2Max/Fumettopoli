@@ -15,3 +15,5 @@ export const CART_REMOVE = "/cart/remove";
 
 export const SWIPER_FETCH = "/product/show";
 export const PRODUCT_FETCH = "/product/info";
+
+export const SEARCH = "/search";

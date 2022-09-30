@@ -19,6 +19,7 @@ const Navbar = () => {
     const [showBasic, setShowBasic] = useState(false);
     const [logged, setLogged] = useState(true);
 
+
     useEffect(() => {
         if(sessionStorage.getItem("logged-user") === null)
             setLogged(false);
@@ -29,6 +30,13 @@ const Navbar = () => {
     const logout = () => {
         sessionStorage.removeItem("logged-user");
         setLogged(false);
+    }
+
+    const search = () => {
+        let data = document.getElementById("searchInput") as HTMLInputElement;
+        sessionStorage.removeItem("search-data");
+        sessionStorage.setItem("search-data", data.value);
+        window.location.href="/search";
     }
 
     return(
@@ -48,32 +56,6 @@ const Navbar = () => {
         </MDBNavbarToggler>
 
             <MDBCollapse navbar show={showBasic}>
-            {/* <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
-                <MDBNavbarItem>
-                <MDBNavbarLink active aria-current='page' href='home' className="link-hover">
-                    Home
-                </MDBNavbarLink>
-                </MDBNavbarItem>
-
-                <MDBNavbarItem>
-                <MDBDropdown>
-                    <MDBDropdownToggle tag='a' className='nav-link pointer link-hover'>
-                    Dropdown
-                    </MDBDropdownToggle>
-                    <MDBDropdownMenu>
-                    <MDBDropdownItem>
-                        <MDBDropdownLink className="dropdown-extra">Action</MDBDropdownLink>
-                    </MDBDropdownItem>
-                    <MDBDropdownItem>
-                        <MDBDropdownLink className="dropdown-extra">Another action</MDBDropdownLink>
-                    </MDBDropdownItem>
-                    <MDBDropdownItem>
-                        <MDBDropdownLink className="dropdown-extra">Something else here</MDBDropdownLink>
-                    </MDBDropdownItem>
-                    </MDBDropdownMenu>
-                </MDBDropdown>
-                </MDBNavbarItem>
-            </MDBNavbarNav> */}
             
             <MDBNavbarItem float-end className = "d-flex w-auto ms-auto me-2 my-2">
                 <Darkmode/>
@@ -95,9 +77,9 @@ const Navbar = () => {
             </MDBNavbarItem> */}
 
             
-            <MDBInputGroup tag="form" className='d-flex w-auto mb-2 my-2'>
-                <input className='form-control search-bar' placeholder="" aria-label="Search" type='Search' />
-                <MDBBtn className="search-button normal-text">Search</MDBBtn>
+            <MDBInputGroup tag="div" className='d-flex w-auto mb-2 my-2'>
+                <input className='form-control search-bar' placeholder="" aria-label="Search" id="searchInput"/>
+                <MDBBtn className="search-button normal-text" onClick={search}>Search</MDBBtn>
             </MDBInputGroup>
             </MDBCollapse>
         </MDBContainer>

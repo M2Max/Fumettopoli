@@ -26,7 +26,7 @@ export default function SmallSwiper(props: any) {
             getList();
         else{
             const temp = response.map((product: productSlideObject) => {
-                return <SwiperSlide><ProductSlide Image={product.Image} Name={product.Name}/></SwiperSlide>
+                return <SwiperSlide key={product.Name}><ProductSlide Image={product.Image} Name={product.Name}/></SwiperSlide>
             })
             setList(temp);
         }
