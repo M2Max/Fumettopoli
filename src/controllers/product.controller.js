@@ -17,6 +17,17 @@ exports.getProduct = (req, res) => {
             if(err.kind === 'not_found')
                 return res.status(404).send({message: "Product not found"});
         return res.status(200).send(data);
-    })
+    });
+
+}
+
+exports.searchProducts = (req, res) => {
+
+    Product.search(req.body.search, (err, data) => {
+        if (err)
+            if(err.kind === 'not_found')
+                return res.status(404).send({message: "No Product Found"});
+        return res.status(200).send(data);
+    });
 
 }

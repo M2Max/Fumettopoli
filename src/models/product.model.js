@@ -40,6 +40,21 @@ Product.fetchList = (category, result) => {
     });
 };
 
+Product.search = (search, result) => {
+  sql.query(`SELECT * FROM product WHERE Name LIKE "%${search}%"`, (err, res) => {
+      if (err) {
+        console.log("Error: ", err);
+        result(err, null);
+        return;
+      }
+      if (res.length) {
+        result(null, res);
+        return;
+      }
+
+      result({ kind: "not_found" }, null);
+    });
+};
 
 
 module.exports = Product;

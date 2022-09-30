@@ -23,4 +23,5 @@ module.exports = function(app) {
 
   app.post("/api/product/show", productController.getList);
   app.post("/api/product/info", productController.getProduct);
+  app.post("/api/search", productController.searchProducts);
 };
