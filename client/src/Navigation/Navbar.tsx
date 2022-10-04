@@ -57,7 +57,7 @@ const Navbar = () => {
 
             <MDBCollapse navbar show={showBasic}>
             
-            <MDBNavbarItem float-end className = "d-flex w-auto ms-auto me-2 my-2">
+            <MDBNavbarItem float-end className = "d-flex w-auto ms-auto me-2 my-2 align-items-center">
                 <Darkmode/>
                 {logged ? ( <MDBNavbarLink active aria-current='page' onClick={logout} className="link-hover mx-1">
                                 <FiLogOut size={28}/>
