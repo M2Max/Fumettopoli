@@ -1,24 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { productObject } from "../../../Interfaces/productInterfaces";
 import { userObject } from "../../../Interfaces/userObject";
+import { BASE_URL, CART_REMOVE, HEADERS, METHOD } from "../../../Utilities/Constants";
 
 import "./CartProductSlide.css";
 
-interface productInformation {
-    productInCart: string;
-    Image: string;
-    quantityInCart: number;
-    totalPriceCart: number;
-}
 
-axios.defaults.baseURL = 'http://localhost:8080/api';
-const method = "post";
-const headers = {
-  "accept": '*/*',
-  "Content-type": "application/json"
-};
-
-const CartProductSlide = (props: productInformation) => {
+const CartProductSlide = (props: productObject) => {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState('');
     const [loading, setloading] = useState(true);
@@ -28,7 +17,7 @@ const CartProductSlide = (props: productInformation) => {
         if(user !== null){
             let jsonUser = JSON.parse(user) as userObject;                
 
-            const endopoint = "/cart/remove";
+            const endopoint = BASE_URL + CART_REMOVE;
             const body = JSON.stringify({
                 id: jsonUser.id,
                 accessToken: jsonUser.accessToken,
@@ -36,9 +25,9 @@ const CartProductSlide = (props: productInformation) => {
             })
         
             axios({
-                method: method,
+                method: METHOD,
                 url: endopoint,
-                headers: headers,
+                headers: HEADERS,
                 data: body
             }).then((res: any) => {
                 setResponse(res.data);
@@ -59,8 +48,8 @@ const CartProductSlide = (props: productInformation) => {
     const removeStored = () => {
         let cart = sessionStorage.getItem("user-cart")
         if(cart !== null){
-            let jsonCart = JSON.parse(cart) as productInformation[];    
-            jsonCart = jsonCart.filter((product: productInformation) => {
+            let jsonCart = JSON.parse(cart) as productObject[];    
+            jsonCart = jsonCart.filter((product: productObject) => {
                 return product.productInCart !== props.productInCart;
             });
             sessionStorage.setItem("user-cart", JSON.stringify(jsonCart));

@@ -17,3 +17,6 @@ export const SWIPER_FETCH = "/product/show";
 export const PRODUCT_FETCH = "/product/info";
 
 export const SEARCH = "/search";
+
+export const CARDS_FETCH = "/cards/fetch";
+export const CARDS_REMOVE = "/cards/remove";

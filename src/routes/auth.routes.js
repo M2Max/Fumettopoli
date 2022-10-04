@@ -4,6 +4,7 @@ const verifyCart    = require("../middleware/verifyCart.js");
 const authController = require("../controllers/auth.controller.js");
 const cartController = require("../controllers/cart.controller.js");
 const productController = require("../controllers/product.controller.js");
+const cardsController = require("../controllers/cards.controller.js");
 const bodyParser = require("body-parser");
 
 module.exports = function(app) {
@@ -24,4 +25,7 @@ module.exports = function(app) {
   app.post("/api/product/show", productController.getList);
   app.post("/api/product/info", productController.getProduct);
   app.post("/api/search", productController.searchProducts);
+
+  app.post("/api/cards/fetch", [tokenCheck.verifyToken, cardsController.getCards]);
+  app.post("/api/cards/remove", [tokenCheck.verifyToken, cardsController.removeCard]);
 };

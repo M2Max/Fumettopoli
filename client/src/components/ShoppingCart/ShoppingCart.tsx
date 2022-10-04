@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useLoginStatus from "../../Hooks/useLoginStatus";
 import { productObject } from "../../Interfaces/productInterfaces";
 import { userObject } from "../../Interfaces/userObject";
@@ -9,6 +10,7 @@ import CartProductSlide from "./CartProductSlide/CartProductSlide";
 
 const ShoppingCart = () => {
     const { checkLogin } = useLoginStatus();
+    const navigate = useNavigate();
     const [response, setResponse] = useState<productObject[] | null>(null);
     const [error, setError] = useState('');
     const [loading, setloading] = useState(true);
@@ -77,6 +79,10 @@ const ShoppingCart = () => {
             
         }
     }
+
+    const loadCardPage = () => {
+        navigate("/cards");
+    }
     
     return (
         <>
@@ -87,6 +93,7 @@ const ShoppingCart = () => {
             </div>
             <div className="container w-50">
                 <p className="cormorant-bold text-black">Cart total is {total}</p>
+                <button className="add-to-cart btn mx-auto mt-5 normal-text" onClick={loadCardPage}>Place Order</button>
             </div>
         </>
     );

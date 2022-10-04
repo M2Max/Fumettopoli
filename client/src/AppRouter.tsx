@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import CardCreation from "./components/CardPages/CardCreation/CardCreation";
+import CardPage from "./components/CardPages/CardPage";
 import { Homepage } from "./components/Homepage/Homepage";
 import Login from "./components/Login/Login";
 import ProductPage from "./components/ProductPage/ProductPage";
@@ -15,6 +17,8 @@ function AppRouter() {
                 <Route path="/cart" element={ <ShoppingCart />} />
                 <Route path="/product" element={<ProductPage />} />
                 <Route path="/search" element={<SearchResults />} />
+                <Route path="/cards" element={<CardPage />}/>
+                <Route path="/cards/create" element={<CardCreation />}/>
                 <Route path="*" element={<Navigate replace to="/home" />} />
             </Routes>
         </BrowserRouter>

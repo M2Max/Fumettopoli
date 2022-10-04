@@ -104,6 +104,35 @@ User.updateCartItem = (name, id, quantity, price,  result) => {
   })
 }
 
+User.fetchCards = (id, result) => {
+  sql.query(`SELECT * FROM cards WHERE UserCard = "${id}"`, (err, res) => {
+    if (err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    if (res.length) {
+      result(null, res);
+      return;
+    }
+
+    result({ kind: "not_found" }, null);
+  });
+
+}
+
+User.removeCard = (id, cardNumber, result) => {
+  sql.query(`DELETE FROM cards WHERE cards.UserCard = "${id}" AND cards.CardNumber = "${cardNumber}"`, (err, res) => {
+    if (err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+
+    result(null, { message: "Deleted successfully" });
+  });
+}
+
 
 module.exports = User;
 
