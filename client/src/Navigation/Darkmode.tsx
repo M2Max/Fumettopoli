@@ -43,8 +43,8 @@ const DarkMode = () => {
   
   return (
     <div className="toggle-theme-wrapper mx-1">
-      <FaSun      id = "lightModeIcon" style={{position: 'relative', top: '2px'}}  onClick={setLight}  size={28} />
-      <FaRegMoon  id = "darkModeIcon"  style={{position: 'relative', top: '2px'}}  onClick={setDark}   size={28} />
+      <FaSun      id = "lightModeIcon"  onClick={setLight}  size={28} />
+      <FaRegMoon  id = "darkModeIcon"   onClick={setDark}   size={28} />
     </div>
   );
 };

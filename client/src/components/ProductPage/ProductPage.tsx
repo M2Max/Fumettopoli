@@ -1,4 +1,5 @@
 import axios from "axios";
+import { MDBCard, MDBCol, MDBContainer, MDBRow } from "mdb-react-ui-kit";
 import React, { useEffect, useState } from "react";
 import Form from 'react-bootstrap/Form';
 import { useLocation, useNavigate } from "react-router-dom";
@@ -75,16 +76,35 @@ const ProductPage = () => {
     }
 
     return (
-        <div className="homepage-container w-75 vh-100 pt-2 mx-auto text-center">
-            <img src={data.Image} alt="" className="img-fluid"/>
-            <h3 className="bold-text">{data.Name}</h3>
-            <p className = "cormorant-normal" style={{color: "var(--on-background)", whiteSpace: "pre-line"}}>{data.Description}</p>
-            <Form.Select aria-label="Quantity" id="quantitySelected" defaultValue={1} onChange={(e: any) => { priceCalc(e, data.Price); }}>
-                {quantitySelector}
-            </Form.Select>
-            <p className = "cormorant-bold" style={{color: "var(--on-background)"}}>{price} €</p>
-            <button className="add-to-cart btn mx-auto mt-5 normal-text" onClick={addToCart}>Add to Cart</button>
-        </div>
+        <MDBContainer className="py-5">
+            
+                <MDBRow>
+                    <MDBCol>
+                        <img src={data.Image} alt="" className="img-fluid"/>
+                    </MDBCol>
+                    <MDBCol>
+                        <MDBRow>
+                            <h3 className="bold-text">{data.Name}</h3>
+                        </MDBRow>
+                        <MDBRow>
+                            <p className = "cormorant-normal" style={{color: "var(--on-background)", whiteSpace: "pre-line"}}>{data.Description}</p>
+                        </MDBRow>
+                    </MDBCol>
+                </MDBRow>
+
+                <MDBRow className="mt-4">
+                    <MDBCol>
+                        <Form.Select aria-label="Quantity" id="quantitySelected" defaultValue={1} onChange={(e: any) => { priceCalc(e, data.Price); }}>
+                            {quantitySelector}
+                        </Form.Select>
+                    </MDBCol>
+                    <MDBCol className="ms-5">
+                        <p className = "cormorant-bold" style={{color: "var(--on-background)"}}>{price} €</p>
+                        <button className="add-to-cart btn normal-text" onClick={addToCart}>Add to Cart</button>
+                    </MDBCol>
+                </MDBRow>
+
+        </MDBContainer>
     );
 }
 
