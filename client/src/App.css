@@ -72,6 +72,10 @@
   padding: 0;
 }
 
+.on-background-text{
+  color: var(--on-background) !important;
+}
+
 .bold-text{
   font-family: 'Silkscreen', cursive;
   font-weight: bold;

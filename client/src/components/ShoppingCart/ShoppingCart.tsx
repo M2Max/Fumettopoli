@@ -1,4 +1,5 @@
 import axios from "axios";
+import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useLoginStatus from "../../Hooks/useLoginStatus";
@@ -87,13 +88,17 @@ const ShoppingCart = () => {
     return (
         <>
             <div className="container w-50 mt-5">
-                <div className="row">
+                <MDBRow>
                     {grid}
-                </div>
-            </div>
-            <div className="container w-50">
-                <p className="cormorant-bold text-black">Cart total is {total}</p>
-                <button className="add-to-cart btn mx-auto mt-5 normal-text" onClick={loadCardPage}>Place Order</button>
+                </MDBRow>
+                <MDBRow className="mt-5">
+                    <MDBCol>
+                        <p className="cormorant-bold on-background-text fs-3">Cart total is {total}</p>
+                    </MDBCol>
+                    <MDBCol>
+                        <button className="add-to-cart btn mx-auto mt-5 normal-text" onClick={loadCardPage}>Place Order</button>
+                    </MDBCol>
+                </MDBRow>
             </div>
         </>
     );

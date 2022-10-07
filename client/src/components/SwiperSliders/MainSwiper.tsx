@@ -26,10 +26,10 @@ export default function MainSwiper() {
             modules={[Pagination, Autoplay]} 
             className="main-swiper"
         >
-            <SwiperSlide><img src={Slide2} alt="Slide 2" /></SwiperSlide>
-            <SwiperSlide><img src={Slide3} alt="Slide 3" /></SwiperSlide>
-            <SwiperSlide><img src={Slide4} alt="Slide 4" /></SwiperSlide>
-            <SwiperSlide><img src={Slide5} alt="Slide 5" /></SwiperSlide>
+            <SwiperSlide><img src={Slide2} alt="Slide 2" style={{borderRadius: "5px"}} /></SwiperSlide>
+            <SwiperSlide><img src={Slide3} alt="Slide 3" style={{borderRadius: "5px"}} /></SwiperSlide>
+            <SwiperSlide><img src={Slide4} alt="Slide 4" style={{borderRadius: "5px"}} /></SwiperSlide>
+            <SwiperSlide><img src={Slide5} alt="Slide 5" style={{borderRadius: "5px"}} /></SwiperSlide>
         </Swiper>
     </>
   );

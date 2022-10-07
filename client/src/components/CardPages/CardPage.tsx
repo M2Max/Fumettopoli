@@ -16,6 +16,7 @@ const CardPage = () => {
     const [grid, setGrid]           = useState<any>();
 
     useEffect(() => {
+        window.scroll(0, 0);
         if(response === null)
             sessionStorage.removeItem("user-cards");
         checkLogin();
