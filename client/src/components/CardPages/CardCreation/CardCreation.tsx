@@ -1,6 +1,7 @@
 import axios from "axios";
 import { MDBRow, MDBCol, MDBInput, MDBCard, MDBCardHeader, MDBCardBody, MDBBtn, MDBListGroup, MDBListGroupItem, MDBContainer, MDBRadio, MDBCheckbox, MDBValidationItem } from "mdb-react-ui-kit";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useLoginStatus from "../../../Hooks/useLoginStatus";
 import { userObject } from "../../../Interfaces/userObject";
 import { BASE_URL, CARD_ADD, HEADERS, METHOD } from "../../../Utilities/Constants";
@@ -8,6 +9,7 @@ import { BASE_URL, CARD_ADD, HEADERS, METHOD } from "../../../Utilities/Constant
 import "./CardCreation.css";
 
 const CardCreation = () => {
+    const navigate = useNavigate();
     const [response, setResponse] = useState(null);
     const [error, setError] = useState('');
     const [loading, setloading] = useState(true);
@@ -47,6 +49,7 @@ const CardCreation = () => {
                     setResponse(res.data);
                     setError('');
                     setloading(true);
+                    navigate("/cards");
                 })
                 .catch((err: any) => {
                     setError(err);

@@ -1,11 +1,14 @@
 import axios from "axios";
+import { MDBCol, MDBRow } from "mdb-react-ui-kit";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { cardObject } from "../../../Interfaces/cardInterfaces";
 import { userObject } from "../../../Interfaces/userObject";
 import CardImage from "../../../Resources/creditCard.png";
 import { BASE_URL, CARDS_REMOVE, HEADERS, METHOD } from "../../../Utilities/Constants";
 
 const CardSlide = (props: cardObject) => {
+    const navigate = useNavigate();
     const [response, setResponse]   = useState(null);
     const [error, setError]         = useState('');
     const [loading, setloading]     = useState(true);
@@ -59,12 +62,25 @@ const CardSlide = (props: cardObject) => {
         window.location.reload();
     }
 
+    const selectCard = () => {
+        let card = props as cardObject;
+        sessionStorage.setItem("card-selected", JSON.stringify(card));
+        navigate("/checkout");
+    }
+
     return (
         <>
             <div className="container product-slide text-center">
                 <img src={CardImage} alt="" className="img-fluid"/>
                 <p className="mx-auto mt-5 normal-text">{props.CardName} <br/> {props.CardNumber} </p>
-                <button className="add-to-cart btn mx-auto mt-5 normal-text" onClick={removeCard}>Remove</button>
+                <MDBRow>
+                    <MDBCol className="col-md-6">
+                        <button className="add-to-cart btn mt-5 normal-text" onClick={removeCard}>Remove</button>
+                    </MDBCol>
+                    <MDBCol className="col-md-6">
+                        <button className="add-to-cart btn mt-5 normal-text" onClick={selectCard}>Select</button>
+                    </MDBCol>
+                </MDBRow>
             </div>
         </>
     );

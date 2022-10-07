@@ -1,8 +1,19 @@
 import { MDBCard, MDBCardBody, MDBCardHeader, MDBCol, MDBContainer, MDBListGroup, MDBListGroupItem } from "mdb-react-ui-kit";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        if(sessionStorage.getItem("card-selected") === null)
+            navigate("/cart");
+    }, [])
+    
     return (
-    <MDBContainer className="py-4">
+    <MDBContainer className="py-4 w-50">
+        <MDBCol>
+
+        </MDBCol>
         <MDBCol md="4" className="mb-4">
             <MDBCard className="mb-4">
                 <MDBCardHeader className="py-3">

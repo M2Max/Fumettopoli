@@ -67,10 +67,11 @@ const CardPage = () => {
 
     return (
         <>
-        <div className="homepage-container w-75 vh-100 pt-2 mx-auto text-center">
+        <div className="homepage-container w-50 vh-100 pt-2 mx-auto text-center">
             <div className="row">
                 {grid}
             </div>
+            <button className="add-to-cart btn mx-auto mt-5 normal-text" onClick={() => {navigate("/cards/create");}}>Add Card</button>
         </div>
         </>
     );
