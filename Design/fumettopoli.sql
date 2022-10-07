@@ -23,9 +23,11 @@ DROP TABLE IF EXISTS `cards`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cards` (
+  `OwnerName` varchar(32) NOT NULL,
   `CardName` varchar(32) NOT NULL,
-  `CardNumber` int(16) NOT NULL,
-  `CardCVC` int(3) NOT NULL,
+  `CardNumber` int(32) NOT NULL,
+  `CardExpiration` date NOT NULL,
+  `CardCVV` int(3) NOT NULL,
   `UserCard` int(32) NOT NULL,
   PRIMARY KEY (`CardNumber`,`UserCard`),
   KEY `user_card` (`UserCard`),
@@ -39,6 +41,7 @@ CREATE TABLE `cards` (
 
 LOCK TABLES `cards` WRITE;
 /*!40000 ALTER TABLE `cards` DISABLE KEYS */;
+INSERT INTO `cards` VALUES ('Maximiliano Mamone','La Carta',123456,'2025-12-10',123,12);
 /*!40000 ALTER TABLE `cards` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,4 +218,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-10-05 17:35:39
+-- Dump completed on 2022-10-07 19:00:11
