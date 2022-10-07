@@ -133,6 +133,17 @@ User.removeCard = (id, cardNumber, result) => {
   });
 }
 
+User.addCard = (id, cardNumber, cardName, cardOwner, cardExp, cardCVV, result) => {
+  let query = "INSERT INTO `cards` (`OwnerName`, `CardName`, `CardNumber`, `CardExpiration`, `CardCVV`, `UserCard`) VALUES (?, ?, ?, ?, ?, ?)";
+  sql.query(query, [cardOwner, cardName, cardNumber,  cardExp, cardCVV, id], (err, res) => {
+    if (err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    result(null, { message: "Added to cart successfully"});
+  });
+}
 
 module.exports = User;
 

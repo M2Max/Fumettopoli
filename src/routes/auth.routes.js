@@ -28,4 +28,5 @@ module.exports = function(app) {
 
   app.post("/api/cards/fetch", [tokenCheck.verifyToken, cardsController.getCards]);
   app.post("/api/cards/remove", [tokenCheck.verifyToken, cardsController.removeCard]);
+  app.post("/api/cards/add", [tokenCheck.verifyToken, cardsController.addCard]);
 };

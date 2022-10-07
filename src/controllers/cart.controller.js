@@ -25,7 +25,7 @@ exports.removeItem = (req, res) => {
 exports.addItem = (req, res) => {
     User.addToCart(req.body.UsersCart, req.body.ProductInCart, req.body.QuantityInCart, req.body.TotalPriceCart, (err, data) => {
         if(err)
-            return res.status(500).send({message: "Error deleting product"});
+            return res.status(500).send({message: "Error adding product"});
         return res.status(200).send(data);
     })
 }

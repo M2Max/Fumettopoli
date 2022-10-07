@@ -21,3 +21,13 @@ exports.removeCard = (req, res) => {
     })
 
 }
+
+exports.addCard = (req, res) => {
+
+    User.addCard(req.body.id, req.body.cardNumber, req.body.cardName, req.body.cardOwner, req.body.cardExp, req.body.cardCVV, (err, data) => {
+        if(err)
+            return res.status(500).send({message: "Error adding card"});
+        return res.status(200).send(data);
+    })
+
+}
