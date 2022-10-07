@@ -1,7 +1,6 @@
 import axios from "axios";
 import { MDBRow, MDBCol, MDBInput, MDBCard, MDBCardHeader, MDBCardBody, MDBBtn, MDBListGroup, MDBListGroupItem, MDBContainer, MDBRadio, MDBCheckbox, MDBValidationItem } from "mdb-react-ui-kit";
 import { useState } from "react";
-import { reduceEachTrailingCommentRange } from "typescript";
 import useLoginStatus from "../../../Hooks/useLoginStatus";
 import { userObject } from "../../../Interfaces/userObject";
 import { BASE_URL, CARD_ADD, HEADERS, METHOD } from "../../../Utilities/Constants";
@@ -18,8 +17,6 @@ const CardCreation = () => {
         if(!invalidation())
             return;
         else{
-            console.log("ciao");
-            
             checkLogin();
             const cardOwner = document.getElementById("cardOwner") as HTMLInputElement;
             const cardName = document.getElementById("cardName") as HTMLInputElement;
@@ -35,7 +32,7 @@ const CardCreation = () => {
                     cardOwner: cardOwner.value,
                     cardName: cardName.value,
                     cardNumber: cardNumber.value,
-                    cardExpirationDate: cardExpirationDate.value,
+                    cardExp: cardExpirationDate.value,
                     cardCVV: cardCVV.value
                 });
 
@@ -53,6 +50,7 @@ const CardCreation = () => {
                 })
                 .catch((err: any) => {
                     setError(err);
+                    alert("This card already exists");
                 })
                 .finally(() => {
                     setloading(false);
@@ -63,7 +61,7 @@ const CardCreation = () => {
     }
 
     const invalidation = () => {
-        const Elements = document.querySelectorAll("input");
+        const Elements = document.querySelectorAll("input.add");
         let validFields: boolean = true;
     
           // eslint-disable-next-line no-cond-assign
@@ -97,7 +95,7 @@ const CardCreation = () => {
                                 id="cardOwner"
                                 type="text"
                                 wrapperClass="mb-4"
-                                className="text-white"
+                                className="text-white add"
                             />
                         </MDBValidationItem>
                     </MDBCol>
@@ -109,7 +107,7 @@ const CardCreation = () => {
                                 id="cardName"
                                 type="text"
                                 wrapperClass="mb-4"
-                                className="text-white"
+                                className="text-white add"
                             />
                         </MDBValidationItem>
                     </MDBCol>
@@ -125,7 +123,7 @@ const CardCreation = () => {
                                 id="cardNumber"
                                 type="text"
                                 wrapperClass="mb-4"
-                                className="text-white"
+                                className="text-white add"
                                 maxLength={16}
                             />
                         </MDBValidationItem>
@@ -138,7 +136,7 @@ const CardCreation = () => {
                                 id="cardExp"
                                 type="date"
                                 wrapperClass="mb-4"
-                                className="text-white"
+                                className="text-white add"
                             />
                         </MDBValidationItem>
                     </MDBCol>
@@ -150,7 +148,7 @@ const CardCreation = () => {
                                 id="cardCVV"
                                 type="password"
                                 wrapperClass="mb-4"
-                                className="text-white"
+                                className="text-white add"
                                 maxLength={3}
                             />
                         </MDBValidationItem>
@@ -164,6 +162,8 @@ const CardCreation = () => {
                 </MDBRow>
                 </MDBCardBody>
             </MDBCard>
+
+         
         </MDBContainer>
     );
 }
