@@ -33,7 +33,6 @@ function Login() {
     if (value === justifyActive) {
       return;
     }
-
     setJustifyActive(value);
   };
 

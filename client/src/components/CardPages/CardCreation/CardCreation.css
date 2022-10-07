@@ -3,8 +3,12 @@
     color: var(--on-primary) !important;
 }
 
-.button-hover:hover{
-    background-color: var(--primary-variant);
+.secondary-back{
+    background-color: transparent !important;
+}
+
+.secondary-back:hover, .secondary-back:active{
+    background-color: var(--primary-variant) !important;
     transition: all .5s;
 }
 

@@ -1,60 +1,167 @@
-import { MDBRow, MDBCol, MDBInput, MDBCard, MDBCardHeader, MDBCardBody, MDBBtn, MDBListGroup, MDBListGroupItem, MDBContainer, MDBRadio, MDBCheckbox } from "mdb-react-ui-kit";
+import axios from "axios";
+import { MDBRow, MDBCol, MDBInput, MDBCard, MDBCardHeader, MDBCardBody, MDBBtn, MDBListGroup, MDBListGroupItem, MDBContainer, MDBRadio, MDBCheckbox, MDBValidationItem } from "mdb-react-ui-kit";
+import { useState } from "react";
+import { reduceEachTrailingCommentRange } from "typescript";
+import useLoginStatus from "../../../Hooks/useLoginStatus";
+import { userObject } from "../../../Interfaces/userObject";
+import { BASE_URL, CARD_ADD, HEADERS, METHOD } from "../../../Utilities/Constants";
 
 import "./CardCreation.css";
 
 const CardCreation = () => {
+    const [response, setResponse] = useState(null);
+    const [error, setError] = useState('');
+    const [loading, setloading] = useState(true);
+    const { checkLogin } = useLoginStatus();
+
+    const addCard = () => {
+        if(!invalidation())
+            return;
+        else{
+            console.log("ciao");
+            
+            checkLogin();
+            const cardOwner = document.getElementById("cardOwner") as HTMLInputElement;
+            const cardName = document.getElementById("cardName") as HTMLInputElement;
+            const cardNumber = document.getElementById("cardNumber") as HTMLInputElement;
+            const cardExpirationDate = document.getElementById("cardExp") as HTMLInputElement;
+            const cardCVV = document.getElementById("cardCVV") as HTMLInputElement;
+            let user = sessionStorage.getItem("logged-user");
+            if (user !== null){
+                let objUser = JSON.parse(user) as userObject;
+                let body: string = JSON.stringify({
+                    accessToken: objUser.accessToken,
+                    id: objUser.id,
+                    cardOwner: cardOwner.value,
+                    cardName: cardName.value,
+                    cardNumber: cardNumber.value,
+                    cardExpirationDate: cardExpirationDate.value,
+                    cardCVV: cardCVV.value
+                });
+
+                const endopoint = BASE_URL + CARD_ADD;
+            
+                axios({
+                    method: METHOD,
+                    url: endopoint,
+                    headers: HEADERS,
+                    data: body
+                }).then((res: any) => {
+                    setResponse(res.data);
+                    setError('');
+                    setloading(true);
+                })
+                .catch((err: any) => {
+                    setError(err);
+                })
+                .finally(() => {
+                    setloading(false);
+                });            
+            }
+        }
+
+    }
+
+    const invalidation = () => {
+        const Elements = document.querySelectorAll("input");
+        let validFields: boolean = true;
+    
+          // eslint-disable-next-line no-cond-assign
+          for (var i = 0, element; element = Elements[i] as HTMLInputElement; i++) {
+              if(element.value === ""){
+                
+                
+                element.classList.add("is-invalid");
+                validFields = false;
+              }
+          }
+        return validFields;
+      }
+
     return (
         <MDBContainer className="py-5">
-            <MDBCard className="mb-4 mt-5 card-form">
+            <MDBCard className="mb-4 mt-5 card-form w-50 mx-auto">
 
-                <MDBCardHeader className="py-3">
-                <h5 className="mb-0 cormorant-bolde">Credit Card Information</h5>
+                <MDBCardHeader className="py-3 border-0">
+                    <h5 className="mb-0 cormorant-bold text-white">Credit Card Information</h5>
                 </MDBCardHeader>
                 
                 <MDBCardBody className="cormorant-normal">
 
                 <MDBRow>
                     <MDBCol>
-                    <MDBInput
-                        label="Owner's "
-                        id="form6"
-                        type="text"
-                        wrapperClass="mb-4"
-                    />
+                        <MDBValidationItem className='w-100' invalid feedback="Please enter Owner's Name">
+                            <MDBInput
+                                label="Owner's "
+                                labelClass="text-white"
+                                id="cardOwner"
+                                type="text"
+                                wrapperClass="mb-4"
+                                className="text-white"
+                            />
+                        </MDBValidationItem>
+                    </MDBCol>
+                    <MDBCol>
+                        <MDBValidationItem className='w-100' invalid feedback='Please enter valid card name'>
+                            <MDBInput
+                                label="Card Name"
+                                labelClass="text-white"
+                                id="cardName"
+                                type="text"
+                                wrapperClass="mb-4"
+                                className="text-white"
+                            />
+                        </MDBValidationItem>
                     </MDBCol>
                     
                 </MDBRow>
 
-                <MDBRow>
+                <MDBRow className="mt-3">
                     <MDBCol>
-                    <MDBInput
-                        label="Card's Number"
-                        id="form7"
-                        type="text"
-                        wrapperClass="mb-4"
-                    />
+                        <MDBValidationItem className='w-100' invalid feedback='Please enter valid card number'>
+                            <MDBInput
+                                label="Card's Number"
+                                labelClass="text-white"
+                                id="cardNumber"
+                                type="text"
+                                wrapperClass="mb-4"
+                                className="text-white"
+                                maxLength={16}
+                            />
+                        </MDBValidationItem>
                     </MDBCol>
                     <MDBCol md="3">
-                    <MDBInput
-                        label="Expiration"
-                        id="form8"
-                        type="date"
-                        wrapperClass="mb-4"
-                    />
+                        <MDBValidationItem className='w-100' invalid feedback='Please enter valid expiration date'>
+                            <MDBInput
+                                label="Expiration"
+                                labelClass="text-white"
+                                id="cardExp"
+                                type="date"
+                                wrapperClass="mb-4"
+                                className="text-white"
+                            />
+                        </MDBValidationItem>
                     </MDBCol>
                     <MDBCol md="3">
-                    <MDBInput
-                        label="CVV"
-                        id="form8"
-                        type="password"
-                        wrapperClass="mb-4"
-                    />
+                        <MDBValidationItem className='w-100' invalid feedback='Please enter valid cvv'>
+                            <MDBInput
+                                label="CVV"
+                                labelClass="text-white"
+                                id="cardCVV"
+                                type="password"
+                                wrapperClass="mb-4"
+                                className="text-white"
+                                maxLength={3}
+                            />
+                        </MDBValidationItem>
                     </MDBCol>
                 </MDBRow>
 
-                <MDBBtn size="sm" className="cormorant-bold button-hover" block>
-                    Add Card
-                </MDBBtn>
+                <MDBRow className="mt-5">
+                    <MDBBtn size="sm" className="cormorant-bold secondary-back mx-auto w-25 border-0 shadow-none" block onClick={addCard}>
+                        Add Card
+                    </MDBBtn>
+                </MDBRow>
                 </MDBCardBody>
             </MDBCard>
         </MDBContainer>
