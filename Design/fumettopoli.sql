@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2022 at 07:15 PM
+-- Generation Time: Oct 08, 2022 at 06:01 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -61,10 +61,7 @@ CREATE TABLE `cart_user` (
 --
 
 INSERT INTO `cart_user` (`UsersCart`, `ProductInCart`, `QuantityInCart`, `TotalPriceCart`) VALUES
-(12, 'Demon Slayer 20', 17, 76.5),
-(12, 'Dragon Ball Ultimate Edition2', 17, 255),
-(12, 'One Piece Jump Remix Edition vol. 14', 1, 19.9),
-(12, 'Slam Dunk 1', 1, 7);
+(12, 'Dragon Ball Ultimate Edition2', 1, 15);
 
 -- --------------------------------------------------------
 
@@ -91,10 +88,21 @@ INSERT INTO `category` (`Name`) VALUES
 --
 
 CREATE TABLE `orders` (
-  `ID` varchar(32) NOT NULL,
+  `ID` int(32) NOT NULL,
   `Total` double NOT NULL,
-  `OrderUser` int(32) NOT NULL
+  `CardUsed` int(32) NOT NULL,
+  `OrderUser` int(32) NOT NULL,
+  `Status` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`ID`, `Total`, `CardUsed`, `OrderUser`, `Status`) VALUES
+(45, 90, 123456, 12, 0),
+(46, 4.9, 123456, 12, 0),
+(47, 628.2, 123456, 12, 0);
 
 -- --------------------------------------------------------
 
@@ -138,10 +146,19 @@ INSERT INTO `product` (`Name`, `Description`, `CategoryName`, `Image`, `Quantity
 
 CREATE TABLE `products_ordered` (
   `ProductName` varchar(256) NOT NULL,
-  `OrderID` varchar(32) NOT NULL,
+  `OrderID` int(32) NOT NULL,
   `QuantityOrdered` int(16) NOT NULL,
   `TotalProduct` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `products_ordered`
+--
+
+INSERT INTO `products_ordered` (`ProductName`, `OrderID`, `QuantityOrdered`, `TotalProduct`) VALUES
+('Dragon Ball Ultimate Edition2', 45, 6, 90),
+('Fullmetal Alchemist 23', 46, 1, 4.9),
+('Minato Namikaze Naruto Shippuden Vibration Stars - Banpresto Figure', 47, 18, 628.2);
 
 -- --------------------------------------------------------
 
@@ -197,7 +214,8 @@ ALTER TABLE `category`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`ID`),
-  ADD KEY `user_order_id` (`OrderUser`);
+  ADD KEY `user_order_id` (`OrderUser`),
+  ADD KEY `card_used` (`CardUsed`);
 
 --
 -- Indexes for table `product`
@@ -222,6 +240,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `ID` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -250,6 +274,7 @@ ALTER TABLE `cart_user`
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
+  ADD CONSTRAINT `card_used` FOREIGN KEY (`CardUsed`) REFERENCES `cards` (`CardNumber`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `user_order_id` FOREIGN KEY (`OrderUser`) REFERENCES `user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
