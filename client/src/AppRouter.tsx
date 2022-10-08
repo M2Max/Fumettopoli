@@ -4,6 +4,7 @@ import CardCreation from "./components/CardPages/CardCreation/CardCreation";
 import CardPage from "./components/CardPages/CardPage";
 import { Homepage } from "./components/Homepage/Homepage";
 import Login from "./components/Login/Login";
+import OrdersPage from "./components/OrdersPage/OrdersPage";
 import Payment from "./components/Payment/Payment";
 import ProductPage from "./components/ProductPage/ProductPage";
 import SearchResults from "./components/SearchResults/SearchResults";
@@ -21,6 +22,7 @@ function AppRouter() {
                 <Route path="/cards" element={<CardPage />}/>
                 <Route path="/cards/create" element={<CardCreation />}/>
                 <Route path="/checkout" element={<Payment />}/>
+                <Route path="/orders" element={<OrdersPage />}/>
                 <Route path="*" element={<Navigate replace to="/home" />} />
             </Routes>
         </BrowserRouter>

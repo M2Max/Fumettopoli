@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { cardObject } from "../../Interfaces/cardInterfaces";
 import { productObject } from "../../Interfaces/productInterfaces";
 import { userObject } from "../../Interfaces/userObject";
-import { BASE_URL, HEADERS, METHOD, ORDER_CHECKOUT } from "../../Utilities/Constants";
+import { BASE_URL, CART_DELETION, HEADERS, METHOD, ORDER_CHECKOUT } from "../../Utilities/Constants";
 import ElementToPay from "./ElementToPay/ElementToPay";
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 const Payment = () => {
     const navigate = useNavigate();
@@ -29,7 +31,24 @@ const Payment = () => {
             setTable(temp);
         }
 
-    }, [navigate]);
+    }, []);
+
+    const submission = () => {
+        confirmAlert({
+            title: 'Conferma ordine',
+            message: "Sei sicuro di voler effettuare l'ordine",
+            buttons: [
+              {
+                label: 'Si',
+                onClick: checkout
+              },
+              {
+                label: 'No',
+                onClick: () => {}
+              }
+            ]
+          });
+    }
 
     const checkout = () => {
         let user = sessionStorage.getItem("logged-user")
@@ -47,6 +66,7 @@ const Payment = () => {
                 total: total,
                 card: jsonCard.CardNumber
             });
+            
 
             axios({
                 method: METHOD,
@@ -57,9 +77,9 @@ const Payment = () => {
                 setResponse(res.data);
                 setError('');
                 setloading(true);
-                sessionStorage.removeItem("card-selected");
                 sessionStorage.removeItem("user-cart");
-                navigate("/home");
+                sessionStorage.removeItem("card-selected");   
+                emptyCart();               
             })
             .catch((err: any) => {
                 alert("There was an error completing your order \n Try again later please");
@@ -70,7 +90,39 @@ const Payment = () => {
             });            
         }
     }
-    
+
+    const emptyCart = () => {
+        let user = sessionStorage.getItem("logged-user")
+        if(user !== null){
+            let jsonUser = JSON.parse(user) as userObject;                
+
+            const endpoint = BASE_URL + CART_DELETION;
+            const body     = JSON.stringify({
+                id: jsonUser.id,
+                accessToken: jsonUser.accessToken,
+            });
+            
+
+            axios({
+                method: METHOD,
+                url: endpoint,
+                headers: HEADERS,
+                data: body,
+            }).then((res: any) => {
+                setResponse(res.data);
+                setError('');
+                setloading(true);
+                navigate("/home");    
+            })
+            .catch((err: any) => {
+                setError(err);
+            })
+            .finally(() => {
+                setloading(false);
+            });            
+        }
+    }
+
     return (
     <MDBContainer className="py-4 w-50">
         <MDBRow>
@@ -124,7 +176,7 @@ const Payment = () => {
             </MDBCol>
         </MDBRow>
         <MDBRow>
-            <MDBBtn size="sm" className="add-to-cart btn mx-auto mt-5 normal-text w-25" block onClick={checkout}>
+            <MDBBtn size="sm" className="add-to-cart btn mx-auto mt-5 normal-text w-25" block onClick={submission}>
                 Checkout
             </MDBBtn>
         </MDBRow>

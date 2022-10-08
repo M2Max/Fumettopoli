@@ -12,7 +12,7 @@ import {
   } from 'mdb-react-ui-kit';
 import Darkmode from "./Darkmode";
 import logo from "../Resources/logo.png";
-import { FaBars, FaShoppingCart, FaUserCircle } from "react-icons/fa";
+import { FaBars, FaShippingFast, FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 
 const Navbar = () => {
@@ -63,6 +63,9 @@ const Navbar = () => {
             
             <MDBNavbarItem float-end className = "d-flex w-auto ms-auto me-2 my-2 align-items-center">
                 <Darkmode/>
+                <MDBNavbarLink active aria-current='page' href='orders' className="link-hover mx-1">
+                    <FaShippingFast size={28}/>
+                </MDBNavbarLink>
                 {logged ? ( <MDBNavbarLink active aria-current='page' onClick={logout} className="link-hover mx-1">
                                 <FiLogOut size={28}/>
                             </MDBNavbarLink>) 

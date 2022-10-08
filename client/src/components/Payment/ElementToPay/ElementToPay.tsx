@@ -54,7 +54,7 @@ const ElementToPay = (props: productObject) => {
                         className='rounded-circle'
                     />
                     <div className='ms-3'>
-                        <p className='fw-bold mb-1'>{props.productInCart}</p>
+                        <p className='fw-bold mb-1 text-nowrap'>{props.productInCart}</p>
                     </div>
                 </div>
             </td>

@@ -104,6 +104,19 @@ User.updateCartItem = (name, id, quantity, price,  result) => {
   })
 }
 
+
+User.emptyCart = (id , result) => {
+  sql.query(`DELETE FROM cart_user WHERE cart_user.UsersCart = "${id}"`, (err, res) => {
+    if (err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+
+    result(null, { message: "Deleted successfully" });
+  });
+}
+
 User.fetchCards = (id, result) => {
   sql.query(`SELECT * FROM cards WHERE UserCard = "${id}"`, (err, res) => {
     if (err) {
@@ -153,11 +166,11 @@ User.addOrder = (userId, cardNumber, total, result) => {
       result(err, null);
       return;
     }
-    result(null, { message: "Added Order successfully"});
+    result(null, res);
   });
 }
 
-User.addProductToORder = (orderID, productName, quantity, total, result) => {
+User.addProductToOrder = (orderID, productName, quantity, total, result) => {
   let query = "INSERT INTO `products_ordered` (`ProductName`, `OrderID`, `QuantityOrdered`, `TotalProduct`) VALUES (?, ?, ?, ?)";
   sql.query(query, [productName, orderID, quantity, total], (err, res) => {
     if (err) {
@@ -169,8 +182,8 @@ User.addProductToORder = (orderID, productName, quantity, total, result) => {
   });
 }
 
-User.fetchID = (result) => {
-  sql.query(`SELECT LAST_INSERT_ID()`, (err, res) => {
+User.fetchOrders = (id, result) => {
+  sql.query(`SELECT o.ProductName, o.OrderID, o.QuantityOrdered, p.Image, o.TotalProduct,  p.CategoryName as Category, s.Status as OrderStatus FROM orders s JOIN products_ordered o ON o.OrderID = s.ID JOIN product p ON p.Name = o.ProductName WHERE s.OrderUser = "${id}"`, (err, res) => {
     if (err) {
       console.log("Error: ", err);
       result(err, null);
@@ -184,6 +197,7 @@ User.fetchID = (result) => {
     result({ kind: "not_found" }, null);
   });
 }
+
 
 module.exports = User;
 

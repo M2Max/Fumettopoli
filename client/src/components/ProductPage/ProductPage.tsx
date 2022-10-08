@@ -33,7 +33,8 @@ const ProductPage = () => {
         let selector = document.getElementById("quantitySelected") as HTMLSelectElement;
         console.log(selector.value);
         const selected = e.target.value;
-        setPrice(selected * basePrice);
+        const value: number = selected * basePrice;
+        setPrice(Number(value.toFixed(2)));
     }
 
     const addToCart = () => {

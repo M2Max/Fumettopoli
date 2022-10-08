@@ -6,10 +6,10 @@ exports.getCart = (req, res) => {
         if(err)
             if(err.kind === "not_found")
                 return res.status(404).send({
-                    message: "User not found!"
+                    message: "Cart not found!"
                 });
         return res.status(200).send(data)
-    })
+    });
 }
 
 exports.removeItem = (req, res) => {
@@ -36,4 +36,12 @@ exports.updateItem = (req, res) => {
             return res.status(500).send({message: "Unexpected error"});
         return res.status(200).send(data);
     })
+}
+
+exports.cartDeletion = (req, res) => {
+    User.emptyCart(req.body.id, (err, data) => {
+        if(err)
+            return res.status(500).send({message: "Error deleting product"});
+        return res.status(200).send(data);
+    }); 
 }

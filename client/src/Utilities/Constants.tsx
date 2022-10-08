@@ -12,6 +12,7 @@ export const AUTH_SIGNIN    = "/auth/signin";
 export const CART_FETCH     = "/cart/fetch";
 export const CART_ADD       = "/cart/add";
 export const CART_REMOVE    = "/cart/remove";
+export const CART_DELETION  = "/cart/empty";
 
 export const SWIPER_FETCH   = "/product/show";
 export const PRODUCT_FETCH  = "/product/info";
@@ -23,3 +24,4 @@ export const CARDS_REMOVE   = "/cards/remove";
 export const CARD_ADD       = "/cards/add";
 
 export const ORDER_CHECKOUT = "/orders/checkout";
+export const ORDERS_FETCH   = "/orders/fetch";
