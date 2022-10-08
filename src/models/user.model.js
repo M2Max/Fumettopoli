@@ -145,5 +145,45 @@ User.addCard = (id, cardNumber, cardName, cardOwner, cardExp, cardCVV, result) =
   });
 }
 
+User.addOrder = (userId, cardNumber, total, result) => {
+  let query = "INSERT INTO `orders` (`ID`, `Total`, `CardUsed`, `OrderUser`) VALUES (NULL, ?, ?, ?)";
+  sql.query(query, [total, cardNumber, userId], (err, res) => {
+    if (err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    result(null, { message: "Added Order successfully"});
+  });
+}
+
+User.addProductToORder = (orderID, productName, quantity, total, result) => {
+  let query = "INSERT INTO `products_ordered` (`ProductName`, `OrderID`, `QuantityOrdered`, `TotalProduct`) VALUES (?, ?, ?, ?)";
+  sql.query(query, [productName, orderID, quantity, total], (err, res) => {
+    if (err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    result(null, { message: "Added Order successfully"});
+  });
+}
+
+User.fetchID = (result) => {
+  sql.query(`SELECT LAST_INSERT_ID()`, (err, res) => {
+    if (err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    if (res.length) {
+      result(null, res);
+      return;
+    }
+
+    result({ kind: "not_found" }, null);
+  });
+}
+
 module.exports = User;
 

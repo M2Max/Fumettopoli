@@ -5,7 +5,7 @@ var bodyParser = require('body-parser')
 const app = express();
 
 var corsOptions = {
-  origin: "http://localhost:3000"
+  origin: "*"
 };
 
 app.use(express.json());
@@ -23,7 +23,7 @@ const PORT = process.env.PORT || 8080;
 require("./src/routes/auth.routes.js")(app);
 
 app.listen(PORT, () => {
-console.log(`Server is running on port ${PORT}.`);
+  console.log(`Server is running on port ${PORT}.`);
 });
 
 

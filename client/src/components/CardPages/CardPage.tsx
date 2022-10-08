@@ -1,4 +1,5 @@
 import axios from "axios";
+import { MDBBtn } from "mdb-react-ui-kit";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useLoginStatus from "../../Hooks/useLoginStatus";
@@ -68,11 +69,11 @@ const CardPage = () => {
 
     return (
         <>
-        <div className="homepage-container w-50 vh-100 pt-2 mx-auto text-center">
+        <div className="homepage-container w-25 vh-100 pt-2 mx-auto text-center">
             <div className="row">
                 {grid}
             </div>
-            <button className="add-to-cart btn mx-auto mt-5 normal-text" onClick={() => {navigate("/cards/create");}}>Add Card</button>
+            <MDBBtn className="add-to-cart btn mx-auto mt-5 normal-text" onClick={() => {navigate("/cards/create");}}>Add Card</MDBBtn>
         </div>
         </>
     );

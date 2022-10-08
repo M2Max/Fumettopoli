@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MDBCol, MDBRow } from "mdb-react-ui-kit";
+import { MDBBtn, MDBCol, MDBRow } from "mdb-react-ui-kit";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { cardObject } from "../../../Interfaces/cardInterfaces";
@@ -75,10 +75,10 @@ const CardSlide = (props: cardObject) => {
                 <p className="mx-auto mt-5 normal-text">{props.CardName} <br/> {props.CardNumber} </p>
                 <MDBRow>
                     <MDBCol className="col-md-6">
-                        <button className="add-to-cart btn mt-5 normal-text" onClick={removeCard}>Remove</button>
+                        <MDBBtn size="sm" className="add-to-cart btn me-1 mt-5 normal-text" onClick={removeCard}>Remove</MDBBtn>
                     </MDBCol>
                     <MDBCol className="col-md-6">
-                        <button className="add-to-cart btn mt-5 normal-text" onClick={selectCard}>Select</button>
+                        <MDBBtn size="sm" className="add-to-cart btn ms-1 mt-5 normal-text" onClick={selectCard}>Select</MDBBtn>
                     </MDBCol>
                 </MDBRow>
             </div>

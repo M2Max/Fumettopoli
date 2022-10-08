@@ -29,6 +29,10 @@ const Navbar = () => {
 
     const logout = () => {
         sessionStorage.removeItem("logged-user");
+        sessionStorage.removeItem("user-cart");
+        sessionStorage.removeItem("total-cart-sum");
+        sessionStorage.removeItem("card-selected");
+        sessionStorage.removeItem("user-cards");
         setLogged(false);
     }
 

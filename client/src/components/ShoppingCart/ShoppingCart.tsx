@@ -77,11 +77,11 @@ const ShoppingCart = () => {
                 sum += product.totalPriceCart;
             })
             setTotal(sum);
-            
         }
     }
 
     const loadCardPage = () => {
+        sessionStorage.setItem("total-cart-sum", total.toString());
         navigate("/cards");
     }
     

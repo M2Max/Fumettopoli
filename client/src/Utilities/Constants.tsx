@@ -21,3 +21,5 @@ export const SEARCH         = "/search";
 export const CARDS_FETCH    = "/cards/fetch";
 export const CARDS_REMOVE   = "/cards/remove";
 export const CARD_ADD       = "/cards/add";
+
+export const ORDER_CHECKOUT = "/orders/checkout";
