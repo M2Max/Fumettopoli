@@ -1,13 +1,14 @@
 import axios from "axios";
-import { MDBCol, MDBRow } from "mdb-react-ui-kit";
+import { MDBCard, MDBCol, MDBRow } from "mdb-react-ui-kit";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useLoginStatus from "../../Hooks/useLoginStatus";
 import { productObject } from "../../Interfaces/productInterfaces";
 import { userObject } from "../../Interfaces/userObject";
 import { BASE_URL, CART_FETCH, HEADERS, METHOD } from "../../Utilities/Constants";
-import ProductSlide from "../SwiperSliders/ProductSlide/ProductSlide";
 import CartProductSlide from "./CartProductSlide/CartProductSlide";
+
+import "./ShoppingCart.css";
 
 const ShoppingCart = () => {
     const { checkLogin } = useLoginStatus();
@@ -27,7 +28,7 @@ const ShoppingCart = () => {
         if (cart !== null){
             let jsonCart = JSON.parse(cart) as productObject[];
             const temp = jsonCart.map((product: productObject) => {
-                return  <div key={product.productInCart} className="col-md-4">
+                return  <div key={product.productInCart} className="col-md-4 mb-3">
                             <CartProductSlide productInCart={product.productInCart} Image={product.Image} quantityInCart={product.quantityInCart} totalPriceCart={product.totalPriceCart}/>
                         </div>
             })
@@ -87,17 +88,21 @@ const ShoppingCart = () => {
     
     return (
         <>
-            <div className="container w-50 mt-5">
+            <div className="container w-50 mt-5 cart-container">
                 <MDBRow>
                     {grid}
                 </MDBRow>
-                <MDBRow className="mt-5">
-                    <MDBCol>
-                        <p className="cormorant-bold on-background-text fs-3">Cart total is {total}</p>
-                    </MDBCol>
-                    <MDBCol>
-                        <button className="add-to-cart btn mx-auto mt-5 normal-text" onClick={loadCardPage}>Place Order</button>
-                    </MDBCol>
+                <MDBRow className="my-5">
+                    <MDBCard className="mb-5 align-middle d-inline-block">
+                        <MDBRow>
+                            <MDBCol>
+                                <p className="cormorant-bold on-background-text mx-auto fs-3 my-3">Cart total is € {total}</p>
+                            </MDBCol>
+                            <MDBCol>
+                                <button className="add-to-cart btn mx-auto my-4 normal-text" onClick={loadCardPage}>Place Order</button>
+                            </MDBCol>
+                        </MDBRow>
+                    </MDBCard>
                 </MDBRow>
             </div>
         </>

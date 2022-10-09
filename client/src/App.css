@@ -100,13 +100,20 @@
   color: var(--on-primary);
 }
 
-@media (max-width: 768px) {
+@media screen and (min-width: 1024px){
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+
+}
+
+@media screen and (max-width: 768px) {
   .App{
     padding: 20px 0 !important;
   }
 
-  .homepage-container {
-    width: 100vw !important;
-    margin: 0 !important;
+  footer{
+    font-size: medium !important;
   }
 }

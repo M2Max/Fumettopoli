@@ -60,7 +60,7 @@ const CartProductSlide = (props: productObject) => {
     return (
         <div className="container product-slide text-center">
             <img src={props.Image} alt="" className="img-fluid"/>
-            <p className="mx-auto mt-5 normal-text">{props.productInCart} <br/> {props.quantityInCart} <br/> {props.totalPriceCart} </p>
+            <p className="mx-auto mt-5 normal-text" style={{wordBreak: "break-all", whiteSpace: "nowrap", width: "auto", overflow: "hidden"}}>{props.productInCart} <br/> {props.quantityInCart} <br/> {props.totalPriceCart} </p>
             <button className="add-to-cart btn mx-auto mt-5 normal-text" onClick={remove}>Remove</button>
         </div>
     );

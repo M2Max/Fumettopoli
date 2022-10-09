@@ -41,7 +41,7 @@
     background-color: var(--primary) !important;
 }
 
-@media (max-width: 1600px) {
+@media screen and (min-width: 1024px) and (max-width: 1600px) {
 
     .small-swiper{
         width: 70vw;
@@ -87,6 +87,10 @@
         height: 70%;
         width: auto;
         object-fit: cover;
+    }
+
+    .swiper-pagination{
+        bottom: 0px !important;
     }
     
 }

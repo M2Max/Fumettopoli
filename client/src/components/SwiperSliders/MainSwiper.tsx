@@ -11,19 +11,20 @@ import "swiper/css/pagination";
 
 import "./MainSwiper.css";
 
-import { Pagination, Autoplay } from "swiper";
+import { Autoplay } from "swiper";
+//import { productSlideObject } from "../../Interfaces/productInterfaces";
 
+//export default function MainSwiper(props: productSlideObject) {
 export default function MainSwiper() {
   return (
     <>
         <Swiper 
-            pagination={true} 
             loop={true}
             autoplay={{
             delay: 2500,
             disableOnInteraction: false,
             }} 
-            modules={[Pagination, Autoplay]} 
+            modules={[Autoplay]} 
             className="main-swiper"
         >
             <SwiperSlide><img src={Slide2} alt="Slide 2" style={{borderRadius: "5px"}} /></SwiperSlide>
