@@ -178,7 +178,14 @@ User.addProductToOrder = (orderID, productName, quantity, total, result) => {
       result(err, null);
       return;
     }
-    result(null, { message: "Added Order successfully"});
+    sql.query(`UPDATE product SET QuantityAvailable = QuantityAvailable - "${quantity}" WHERE product.Name = "${productName}"`, (err, res) => {
+      if (err) {
+        console.log("Error: ", err);
+        result(err, null);
+        return;
+      }
+      result(null, { message: "Added Order successfully"});
+    });
   });
 }
 
