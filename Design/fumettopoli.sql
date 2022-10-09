@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2022 at 06:01 PM
+-- Generation Time: Oct 09, 2022 at 03:54 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -20,6 +20,17 @@ SET time_zone = "+00:00";
 --
 -- Database: `fumettopoli`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `banners`
+--
+
+CREATE TABLE `banners` (
+  `ProductName` varchar(256) NOT NULL,
+  `Image` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -124,18 +135,18 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`Name`, `Description`, `CategoryName`, `Image`, `QuantityAvailable`, `Price`) VALUES
-('Boruto - Naruto Next Generations 16', 'Boruto, figlio di Naruto e Hinata, cerca disperatamente di attirare l\'attenzione del padre, impegnatissimo per via del suo ruolo di Hokage. Ribelle e insoddisfatto, diverrÔö£├í discepolo di Sasuke. L\'insolita coppia, nonostante il periodo di pace, dovrÔö£├í affrontare una minaccia immane...', 'Fumetto', 'https://mangayo.it/13893-large_default/boruto-naruto-next-generations-16.jpg', 100, 5.2),
-('Demon Slayer 20', 'Giappone, albori del ventesimo secolo. Il giovane Tanjiro, un gentile venditore di carbone, vede la sua quotidianitÔö£├í stravolta dallo sterminio della famiglia ad opera di un demone. L\'unica rimasta in vita Ôö£┬┐ la sorella minore Nezuko, che tuttavia Ôö£┬┐ stata trasformata in un demone a sua volta. Per farla tornare come prima e vendicarsi del mostro che ha ucciso la madre e i fratellini, Tanjiro si mette in viaggio con Nezuko. Ha cosÔö£┬╝ inizio questa storia di sangue, spade e avventura!', 'Fumetto', 'https://mangayo.it/13701-large_default/demon-slayer-20.jpg', 100, 4.5),
-('Dr. Stone 11', '\r\n\r\nÔö£├¬ l\'anno 5738: da migliaia di anni l\'intera umanitÔö£├í si ritrova tramutata in pietra a causa di una catastrofe naturale. Ooki Taiju riesce inspiegabilmente a risvegliarsi, trovandosi cosÔö£┬╝ di fronte ad una realtÔö£├í completamente diversa da quanto ricordava, una realtÔö£├í dove la natura ha ripreso il sopravvento sulla civiltÔö£├í umana. Al suo risveglio il ragazzo si ricongiunge con il suo amico Senkuu, un giovane e geniale scienziato anche lui risvegliatosi qualche mese prima. Insieme i ragazzi sperano di scoprire la causa dietro all\'improvvisa tramutazione in pietra e, nel frattempo, di trovare una cura. Non tutto, perÔö£Ôûô, va come previsto...\r\n\r\nDr.Stone si Ôö£┬┐ aggiudicato il 64Ôö¼Ôûæ Shogakukan Manga Award nella categoria \"miglior manga shounen\".\r\n', 'Fumetto', 'https://mangayo.it/215-large_default/dr-stone-11.jpg', 100, 4.5),
-('Dragon Ball Ultimate Edition2', 'Un fumetto senza prePer la gioia di tutti gli amanti del fumetto, ecco finalmente la Dragon Ball Ultimate Edition, lussuosissima riedizione della fondamentale opera del maestro Toriyama che, con i testi recentemente aggiornati, riprende il formato e la grafica della ├ö├ç┬úleggendaria├ö├ç├ÿ Perfect Edition. Composta da 34 volumi, con copertina rigida di 15x21 cm e sovraccoperta, l\'edizione proporrÔö£├í anche le pagine a colori originali realizzate in occasione della prima pubblicazione in Giappone su rivista, per regalare a vecchi e nuovi lettori un├ö├ç├ûesperienza di lettura il piÔö£Ôòú fedele possibile all├ö├ç├ûoriginale giapponese!cedenti', 'Fumetto', 'https://mangayo.it/12701-large_default/dragon-ball-ultimate-edition-2.jpg', 100, 15),
-('Fullmetal Alchemist 23', 'Edward e Alphonse Elric sono due fratelli che fin da piccoli si dimostrano estremamente portati per l├ö├ç├ûalchimia. Quella che nel nostro mondo Ôö£┬┐ considerata una disciplina quasi magica, nel loro Ôö£┬┐ una vera e propria scienza con tanto di libri su cui studiare ed esami da fare per poterla praticare. Purtroppo, Ed e Al commettono un tragico errore che segnerÔö£├í per sempre le loro vite.\r\n', 'Fumetto', 'https://mangayo.it/6449-large_default/fullmetal-alchemist-23.jpg', 100, 4.9),
+('Boruto - Naruto Next Generations 16', 'Boruto è figlio di Naruto, il settimo Hokage. Il ragazzo rifiuta completamente il padre ma nonostante questo sentimento, lo rispetta come eroe e vorrebbe sorpassarne le capacità. Boruto incontra Sasuke, padre di una sua amica, e gli chiede di diventare il suo apprendista! Si alza così il sipario sulla storia di una nuova generazione! ', 'Fumetto', 'https://mangayo.it/13893-large_default/boruto-naruto-next-generations-16.jpg', 100, 5.2),
+('Demon Slayer 20', 'Tanjiro è il primogenito di una famiglia che ha perso il padre. Un giorno, visita un\'altra città per vendere carbone ma finisce col passare la notte lì, invece di tornare a casa, per via di una voce riguardante un demone che di notte vaga per una montagna lì vicino. Quando torna a casa il giorno seguente, ad attenderlo ci sarà una tragedia.', 'Fumetto', 'https://mangayo.it/13701-large_default/demon-slayer-20.jpg', 100, 4.5),
+('Dr. Stone 11', '\r\n\r\n Anno 5738: da migliaia di anni l\'intera umanità si ritrova tramutata in pietra a causa di una catastrofe naturale. Ooki Taiju riesce inspiegabilmente a risvegliarsi, trovandosi così di fronte ad una realtà completamente diversa da quanto ricordava, dove la natura ha ripreso il sopravvento sulla civiltà umana. Al suo risveglio il ragazzo si ricongiunge con il suo amico Senkuu, un giovane e geniale scienziato anche lui risvegliatosi qualche mese prima. Insieme i ragazzi sperano di scoprire la causa dietro all\'improvvisa tramutazione in pietra - e, nel frattempo, di trovare una cura. Non tutto, però, va come previsto...\r\n', 'Fumetto', 'https://mangayo.it/215-large_default/dr-stone-11.jpg', 100, 4.5),
+('Dragon Ball Ultimate Edition2', ' Goku è un bambino fuori dal comune, ha un forza straordinaria ed una lunga coda da scimmia. Il nostro eroe è orfano e non ha mai conosciuto i suoi genitori, ha sempre vissuto con il nonno. Inizia la nostra storia, Goku ormai solo, custodisce gelosamente l’unico ricordo del nonno recentemente morto, una sfera sulla quale sono disegnate quattro stelle. La vita di Goku cambia quando una ragazza di nome Bulma gli chiede di aiutarlo a ritrovare le sette sfere del drago (quando le sette sfere si riuniscono appare un drago che esaudirà qualsiasi desiderio), una delle quali è proprio il ricordo del nonno, la quarta sfera. Il nostro protagonista accetta di aiutare Bulma, e l’epopea di Dragonball ha inizio… ', 'Fumetto', 'https://mangayo.it/12701-large_default/dragon-ball-ultimate-edition-2.jpg', 100, 15),
+('Fullmetal Alchemist 23', 'Ambientato in un mondo alternativo simile all\'Europa di inizio 1900, narra i viaggi e la maturazione fisica e spirituale di due fratelli, Edward e Alphonse Elric. Abbandonati dal padre alchimista in tenera età e cresciuti quindi dalla sola madre Trisha, i due bambini manifestano fin da subito grandi attitudini nello studio delle scienze alchemiche. Questo li porta, anni dopo, a tentare una trasmutazione umana, il massimo dei tabù dell\'alchimia, al fine di riportare in vita la madre, morta di malattia. Un’azione che pagheranno a caro prezzo, dando così inizio a una fantastica avventura che li porterà sulle tracce delle leggendaria Pietra Filosofale al fine di riparare all\'errore commesso. ', 'Fumetto', 'https://mangayo.it/6449-large_default/fullmetal-alchemist-23.jpg', 100, 4.9),
 ('Izuku Midoriya My Hero Academia Bravegraph Vol.1 - Banpresto Figure', 'Action figure di Izuku da My Hero Academia', 'Action Figure', 'https://mangayo.it/15643-large_default/izuku-midoriya-my-hero-academia-bravegraph-vol1-banpresto-figure.jpg', 100, 34.9),
-('La Leggenda Del Re Lupo', '\r\n\r\nLA CONCLUSIONE DELLA SAGA FANTASY CREATA DAGLI AUTORI DI BERSERK E KEN IL GUERRIERO!\r\n\r\nPer non dimenticare il corso della storia, uno studioso proveniente dal presente ha preso il posto di Gengis Khan, defunto prima del previsto. RiuscirÔö£├í a essere all\'altezza del condottiero mongolo?\r\n', 'Fumetto', 'https://mangayo.it/16007-large_default/la-leggenda-del-re-lupo.jpg', 100, 7),
+('La Leggenda Del Re Lupo', ' La storia è quella di Iba, giovane e solerte storico giapponese che scomparve misteriosamente durante un viaggio in Cina, dove si era recato per svolgere una ricerca sulla cosiddetta Via della seta. Dopo un anno, la fidanzata Kyoko, certa del fatto che il giovane amato sia ancora in vita, decide di mettersi anche lei in viaggio e, una volta giunta in quelle terre, si trova al centro di un enigma: terrificanti nuvole nere, infatti, la circondano facendole perdere conoscenza e catapultandola… nell’anno 1212 e nella regione cinese di Seika, a quel tempo sotto il controllo dell’Impero Mongolo.', 'Fumetto', 'https://mangayo.it/16007-large_default/la-leggenda-del-re-lupo.jpg', 100, 7),
 ('Minato Namikaze Naruto Shippuden Vibration Stars - Banpresto Figure', 'Action figure di Minato da Naruto', 'Action Figure', 'https://mangayo.it/14258-large_default/minato-namikaze-naruto-shippuden-vibration-stars-banpresto-figure.jpg', 100, 34.9),
 ('One Piece Jump Remix Edition vol. 14', 'Rivista del manga One Piece contentente i capitoli dal 239 al 271.', 'Fumetto', 'https://mangayo.it/10920-large_default/one-piece-jump-remix-edition-vol-14.jpg', 100, 19.9),
-('Slam Dunk 1', '\r\n\r\nHanamichi Sakuragi Ôö£┬┐ una matricola del liceo Shohoku ed Ôö£┬┐ sostanzialmente un attaccabrighe che non passa certo inosservato con i suoi capelli rossi fuori dal comune e con la sua altezza. EntrerÔö£├í nel mondo del basket dopo essersi innamorato di una ragazza che si chiama Haruko, alla quale questo sport piace molto... quindi per conquistarla decide di entrare nella squadra di basket della sua scuola, anche se di questo sport non conosce nemmeno le regole! Gli inizi non saranno quindi certo dei piÔö£Ôòú semplici, ma sotto sotto si potrÔö£├í pian piano scoprire in lui un talento innato!\r\n', 'Fumetto', 'https://mangayo.it/1447-large_default/slam-dunk-1.jpg', 100, 7),
-('Solo Leveling 1', 'Il \"Gate\", un misterioso portale che collega il mondo umano a quello di terribili mostri, mette a rischio la vita degli esseri umani. Delle persone con particolari poteri, gli \"hunter\", combattono per contrastarli. Sung Jinwoo Ôö£┬┐ molto debole, senza particolari abilitÔö£├í, ed Ôö£┬┐ schedato come hunter di \"livello E\". Nonostante questo, cerca di fare del suo meglio per portare avanti il suo compito e pagare le spese mediche della madre. Ma un giorno, a seguito di un inspiegabile evento, Jinwoo comincia a sviluppare i suoi poteri... che possa diventare un imbattibile hunter di \"livello S\"?', 'Fumetto', 'https://mangayo.it/2340-large_default/solo-leveling-1.jpg', 100, 8.9),
-('Spy x Family Special Pack (Vol. 1-3) + 3 Segnalibri Esclusivi - Edizione Giapponese', 'Ecco il manga che ha rivoluzionato il genere delle spy story! \r\n\r\nNome in codice: Twilight. PuÔö£Ôûô mutare il proprio volto in un secondo. PuÔö£Ôûô sventare il lancio di un missile un attimo prima dell├ö├ç├ûirreparabile. PuÔö£Ôûô portare a compimento imprese impossibili. Niente perÔö£Ôûô l├ö├ç├ûha preparato alla prossima missione: trovare moglie (e figlio!) in una settimana├ö├ç┬¬\r\n\r\nUna speciale raccolta contenente i primi 3 volumi del manga di Spy x Family, con tre segnalibri esclusivi in omaggio!\r\n', 'Fumetto', 'https://mangayo.it/10048-large_default/spy-x-family-special-pack-vol-1-3-3-segnalibri-esclusivi-edizione-giapponese.jpg', 100, 34.9),
+('Slam Dunk 1', 'Hanamichi Sakuragi è una matricola del liceo Shohoku ed è sostanzialmente un attaccabrighe che non passa certo inosservato con i suoi capelli rossi fuori dal comune e con la sua altezza. Entrerà nel mondo del basket dopo essersi innamorato di una ragazza che si chiama Haruko, alla quale questo sport piace molto... quindi per conquistarla decide di entrare nella squadra di basket della sua scuola... anche se è totalmente a digiuno di questo sport, di cui non conosce nemmeno le regole! Gli inizi non saranno quindi certo dei più semplici, ma sotto sotto si potrà pian piano scoprire in lui un talento innato per questo sport! \r\n', 'Fumetto', 'https://mangayo.it/1447-large_default/slam-dunk-1.jpg', 100, 7),
+('Solo Leveling 1', 'Il “Gate”, un misterioso portale che collega il mondo umano a quello di terribili mostri, mette a rischio la vita degli esseri umani. Delle persone con particolari poteri, gli “hunter”, combattono per contrastarli. Sung Jinwoo è molto debole, senza particolari abilità, ed è schedato come hunter di “livello E”. Nonostante questo, cerca di fare del suo meglio per portare avanti il suo compito e pagare le spese mediche della madre… Ma un giorno, a seguito di un inspiegabile evento, Jinwoo comincia a sviluppare i suoi poteri… Che possa diventare un imbattibile hunter di \"livello S\"?', 'Fumetto', 'https://mangayo.it/2340-large_default/solo-leveling-1.jpg', 100, 8.9),
+('Spy x Family Special Pack (Vol. 1-3) - Edizione Giapponese', 'Twilight, una delle migliori spie al mondo, ha trascorso la vita ad affrontare missioni sotto copertura per rendere il mondo un posto migliore. Un giorno però riceve un compito particolarmente difficile, per riuscire nella sua nuova missione dovrà formare una famiglia temporanea e iniziare una nuova vita! ', 'Fumetto', 'https://mangayo.it/10048-large_default/spy-x-family-special-pack-vol-1-3-3-segnalibri-esclusivi-edizione-giapponese.jpg', 100, 34.9),
 ('The Tanjiro Kamado II Demon Slayer Maximatic - Banpresto Figure', 'Action figure di Tanjiro da Demon Slayer', 'Action Figure', 'https://mangayo.it/14242-large_default/the-tanjiro-kamado-ii-demon-slayer-maximatic-banpresto-figure.jpg', 100, 34.9);
 
 -- --------------------------------------------------------
@@ -188,6 +199,12 @@ INSERT INTO `user` (`ID`, `Username`, `Password`, `Firstname`, `Lastname`, `Addr
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `banners`
+--
+ALTER TABLE `banners`
+  ADD PRIMARY KEY (`ProductName`);
 
 --
 -- Indexes for table `cards`
@@ -256,6 +273,12 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `banners`
+--
+ALTER TABLE `banners`
+  ADD CONSTRAINT `product_name` FOREIGN KEY (`ProductName`) REFERENCES `product` (`Name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `cards`

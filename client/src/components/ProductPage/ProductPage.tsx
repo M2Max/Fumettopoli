@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MDBCard, MDBCol, MDBContainer, MDBRow } from "mdb-react-ui-kit";
+import { MDBCol, MDBContainer, MDBRow } from "mdb-react-ui-kit";
 import React, { useEffect, useState } from "react";
 import Form from 'react-bootstrap/Form';
 import { useLocation, useNavigate } from "react-router-dom";
@@ -80,9 +80,9 @@ const ProductPage = () => {
         <MDBContainer className="py-5">
             
                 <MDBRow>
-                    <MDBCol>
+                    <div className="col-sm-6 col-sm-push-12">
                         <img src={data.Image} alt="" className="img-fluid"/>
-                    </MDBCol>
+                    </div>
                     <MDBCol>
                         <MDBRow>
                             <h3 className="bold-text">{data.Name}</h3>
