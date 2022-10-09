@@ -1,11 +1,5 @@
 const verifySignUp  = require("../middleware/verifySignup.js");
-const tokenCheck    = require("../middleware/authJwt.js");
-const verifyCart    = require("../middleware/verifyCart.js");
 const authController = require("../controllers/auth.controller.js");
-const cartController = require("../controllers/cart.controller.js");
-const productController = require("../controllers/product.controller.js");
-const cardsController = require("../controllers/cards.controller.js");
-const ordersController = require("../controllers/orders.controller.js");
 const bodyParser = require("body-parser");
 
 module.exports = function(app) {
@@ -16,22 +10,8 @@ module.exports = function(app) {
     );
     next();
   });
+
   app.post("/api/auth/signup", [verifySignUp.checkDuplicateUsername, authController.signup]);
   app.post("/api/auth/signin", authController.signin);
 
-  app.post("/api/cart/fetch", [tokenCheck.verifyToken , cartController.getCart]);
-  app.post("/api/cart/remove", [tokenCheck.verifyToken, cartController.removeItem]);
-  app.post("/api/cart/add", [tokenCheck.verifyToken, verifyCart.checkDuplicateProductInCart, (req, res) => {if(req.runUpdate) {cartController.updateItem(req, res)} else {cartController.addItem(req, res)}}]);
-  app.post("/api/cart/empty", [tokenCheck.verifyToken, cartController.cartDeletion]);
-
-  app.post("/api/product/show", productController.getList);
-  app.post("/api/product/info", productController.getProduct);
-  app.post("/api/search", productController.searchProducts);
-
-  app.post("/api/cards/fetch", [tokenCheck.verifyToken, cardsController.getCards]);
-  app.post("/api/cards/remove", [tokenCheck.verifyToken, cardsController.removeCard]);
-  app.post("/api/cards/add", [tokenCheck.verifyToken, cardsController.addCard]);
-
-  app.post("/api/orders/checkout", [tokenCheck.verifyToken, ordersController.createOrder]);
-  app.post("/api/orders/fetch", [tokenCheck.verifyToken, ordersController.fetchOrders])
 };

@@ -35,7 +35,7 @@ const ElementToPay = (props: orderObject) => {
                 <p className='fw-normal mb-1'>{props.OrderID}</p>
             </td>
             <td>
-                <p className='fw-normal mb-1'>{props.OrderStatus ? "Consegnato" : "Non Consegnato"}</p>
+                <p className='fw-normal mb-1'>{props.OrderStatus ? "Delivered" : "Processing/Shipping"}</p>
             </td>
         </tr>
 

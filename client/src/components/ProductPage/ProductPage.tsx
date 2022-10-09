@@ -23,7 +23,10 @@ const ProductPage = () => {
     useEffect(() => {
         window.scroll(0, 0);
         quantitySetting();
-    }, [])
+        if(response !== null)
+            navigate("/cart", {replace: true});
+
+    }, [response])
 
     const quantitySetting = () => {
         if(data.QuantityAvailable != 0){
@@ -84,8 +87,6 @@ const ProductPage = () => {
                 setloading(false);
             });            
         }
-    
-        navigate("/cart", {replace: true});
         
     }
 

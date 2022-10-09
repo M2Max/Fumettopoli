@@ -56,6 +56,22 @@ Product.search = (search, result) => {
     });
 };
 
+Product.fetchBanners = (result) => {
+  sql.query(`SELECT p.ProductName as Name, p.Image FROM banners p LIMIT 5`, (err, res) => {
+    if (err) {
+      console.log("Error: ", err);
+      result(err, null);
+      return;
+    }
+    if (res.length) {
+      result(null, res);
+      return;
+    }
+
+    result({ kind: "not_found" }, null);
+  });
+}
+
 
 module.exports = Product;
 

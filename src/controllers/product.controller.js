@@ -31,3 +31,12 @@ exports.searchProducts = (req, res) => {
     });
 
 }
+
+exports.fetchBanners = (req, res) => {
+
+    Product.fetchBanners((err, data) => {
+        if(err)
+            return res.status(500).send({message: "Generic error!"});
+        return res.status(200).send(data);
+    })
+}

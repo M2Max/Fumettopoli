@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2022 at 04:41 PM
+-- Generation Time: Oct 09, 2022 at 05:58 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -67,13 +67,6 @@ CREATE TABLE `cart_user` (
   `TotalPriceCart` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `cart_user`
---
-
-INSERT INTO `cart_user` (`UsersCart`, `ProductInCart`, `QuantityInCart`, `TotalPriceCart`) VALUES
-(12, 'Dragon Ball Ultimate Edition2', 1, 15);
-
 -- --------------------------------------------------------
 
 --
@@ -113,7 +106,9 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`ID`, `Total`, `CardUsed`, `OrderUser`, `Status`) VALUES
 (45, 90, 123456, 12, 0),
 (46, 4.9, 123456, 12, 0),
-(47, 628.2, 123456, 12, 0);
+(47, 628.2, 123456, 12, 0),
+(48, 15, 123456, 12, 0),
+(49, 98.8, 123456, 12, 0);
 
 -- --------------------------------------------------------
 
@@ -135,11 +130,11 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`Name`, `Description`, `CategoryName`, `Image`, `QuantityAvailable`, `Price`) VALUES
-('Boruto - Naruto Next Generations 16', 'Boruto è figlio di Naruto, il settimo Hokage. Il ragazzo rifiuta completamente il padre ma nonostante questo sentimento, lo rispetta come eroe e vorrebbe sorpassarne le capacità. Boruto incontra Sasuke, padre di una sua amica, e gli chiede di diventare il suo apprendista! Si alza così il sipario sulla storia di una nuova generazione! ', 'Fumetto', 'https://mangayo.it/13893-large_default/boruto-naruto-next-generations-16.jpg', 100, 5.2),
+('Boruto - Naruto Next Generations 16', 'Boruto è figlio di Naruto, il settimo Hokage. Il ragazzo rifiuta completamente il padre ma nonostante questo sentimento, lo rispetta come eroe e vorrebbe sorpassarne le capacità. Boruto incontra Sasuke, padre di una sua amica, e gli chiede di diventare il suo apprendista! Si alza così il sipario sulla storia di una nuova generazione! ', 'Fumetto', 'https://mangayo.it/13893-large_default/boruto-naruto-next-generations-16.jpg', 81, 5.2),
 ('Demon Slayer 20', 'Tanjiro è il primogenito di una famiglia che ha perso il padre. Un giorno, visita un\'altra città per vendere carbone ma finisce col passare la notte lì, invece di tornare a casa, per via di una voce riguardante un demone che di notte vaga per una montagna lì vicino. Quando torna a casa il giorno seguente, ad attenderlo ci sarà una tragedia.', 'Fumetto', 'https://mangayo.it/13701-large_default/demon-slayer-20.jpg', 100, 4.5),
 ('Dr. Stone 11', '\r\n\r\n Anno 5738: da migliaia di anni l\'intera umanità si ritrova tramutata in pietra a causa di una catastrofe naturale. Ooki Taiju riesce inspiegabilmente a risvegliarsi, trovandosi così di fronte ad una realtà completamente diversa da quanto ricordava, dove la natura ha ripreso il sopravvento sulla civiltà umana. Al suo risveglio il ragazzo si ricongiunge con il suo amico Senkuu, un giovane e geniale scienziato anche lui risvegliatosi qualche mese prima. Insieme i ragazzi sperano di scoprire la causa dietro all\'improvvisa tramutazione in pietra - e, nel frattempo, di trovare una cura. Non tutto, però, va come previsto...\r\n', 'Fumetto', 'https://mangayo.it/215-large_default/dr-stone-11.jpg', 100, 4.5),
 ('Dragon Ball Ultimate Edition2', ' Goku è un bambino fuori dal comune, ha un forza straordinaria ed una lunga coda da scimmia. Il nostro eroe è orfano e non ha mai conosciuto i suoi genitori, ha sempre vissuto con il nonno. Inizia la nostra storia, Goku ormai solo, custodisce gelosamente l’unico ricordo del nonno recentemente morto, una sfera sulla quale sono disegnate quattro stelle. La vita di Goku cambia quando una ragazza di nome Bulma gli chiede di aiutarlo a ritrovare le sette sfere del drago (quando le sette sfere si riuniscono appare un drago che esaudirà qualsiasi desiderio), una delle quali è proprio il ricordo del nonno, la quarta sfera. Il nostro protagonista accetta di aiutare Bulma, e l’epopea di Dragonball ha inizio… ', 'Fumetto', 'https://mangayo.it/12701-large_default/dragon-ball-ultimate-edition-2.jpg', 100, 15),
-('Fullmetal Alchemist 23', 'Ambientato in un mondo alternativo simile all\'Europa di inizio 1900, narra i viaggi e la maturazione fisica e spirituale di due fratelli, Edward e Alphonse Elric. Abbandonati dal padre alchimista in tenera età e cresciuti quindi dalla sola madre Trisha, i due bambini manifestano fin da subito grandi attitudini nello studio delle scienze alchemiche. Questo li porta, anni dopo, a tentare una trasmutazione umana, il massimo dei tabù dell\'alchimia, al fine di riportare in vita la madre, morta di malattia. Un’azione che pagheranno a caro prezzo, dando così inizio a una fantastica avventura che li porterà sulle tracce delle leggendaria Pietra Filosofale al fine di riparare all\'errore commesso. ', 'Fumetto', 'https://mangayo.it/6449-large_default/fullmetal-alchemist-23.jpg', 100, 4.9),
+('Fullmetal Alchemist 23', 'Ambientato in un mondo alternativo simile all\'Europa di inizio 1900, narra i viaggi e la maturazione fisica e spirituale di due fratelli, Edward e Alphonse Elric. Abbandonati dal padre alchimista in tenera età e cresciuti quindi dalla sola madre Trisha, i due bambini manifestano fin da subito grandi attitudini nello studio delle scienze alchemiche. Questo li porta, anni dopo, a tentare una trasmutazione umana, il massimo dei tabù dell\'alchimia, al fine di riportare in vita la madre, morta di malattia. Un’azione che pagheranno a caro prezzo, dando così inizio a una fantastica avventura che li porterà sulle tracce delle leggendaria Pietra Filosofale al fine di riparare all\'errore commesso. ', 'Fumetto', 'https://mangayo.it/6449-large_default/fullmetal-alchemist-23.jpg', 19, 4.9),
 ('Izuku Midoriya My Hero Academia Bravegraph Vol.1 - Banpresto Figure', 'Action figure di Izuku da My Hero Academia', 'Action Figure', 'https://mangayo.it/15643-large_default/izuku-midoriya-my-hero-academia-bravegraph-vol1-banpresto-figure.jpg', 100, 34.9),
 ('La Leggenda Del Re Lupo', ' La storia è quella di Iba, giovane e solerte storico giapponese che scomparve misteriosamente durante un viaggio in Cina, dove si era recato per svolgere una ricerca sulla cosiddetta Via della seta. Dopo un anno, la fidanzata Kyoko, certa del fatto che il giovane amato sia ancora in vita, decide di mettersi anche lei in viaggio e, una volta giunta in quelle terre, si trova al centro di un enigma: terrificanti nuvole nere, infatti, la circondano facendole perdere conoscenza e catapultandola… nell’anno 1212 e nella regione cinese di Seika, a quel tempo sotto il controllo dell’Impero Mongolo.', 'Fumetto', 'https://mangayo.it/16007-large_default/la-leggenda-del-re-lupo.jpg', 100, 7),
 ('Minato Namikaze Naruto Shippuden Vibration Stars - Banpresto Figure', 'Action figure di Minato da Naruto', 'Action Figure', 'https://mangayo.it/14258-large_default/minato-namikaze-naruto-shippuden-vibration-stars-banpresto-figure.jpg', 100, 34.9),
@@ -167,7 +162,9 @@ CREATE TABLE `products_ordered` (
 --
 
 INSERT INTO `products_ordered` (`ProductName`, `OrderID`, `QuantityOrdered`, `TotalProduct`) VALUES
+('Boruto - Naruto Next Generations 16', 49, 19, 98.8),
 ('Dragon Ball Ultimate Edition2', 45, 6, 90),
+('Dragon Ball Ultimate Edition2', 48, 1, 15),
 ('Fullmetal Alchemist 23', 46, 1, 4.9),
 ('Minato Namikaze Naruto Shippuden Vibration Stars - Banpresto Figure', 47, 18, 628.2);
 
@@ -262,7 +259,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `ID` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `ID` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `user`

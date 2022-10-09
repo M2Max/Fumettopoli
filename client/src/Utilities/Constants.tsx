@@ -16,6 +16,7 @@ export const CART_DELETION  = "/cart/empty";
 
 export const SWIPER_FETCH   = "/product/show";
 export const PRODUCT_FETCH  = "/product/info";
+export const BANNER_FETCH   = "/banners/fetch";
 
 export const SEARCH         = "/search";
 

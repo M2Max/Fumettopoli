@@ -12,10 +12,54 @@ import "swiper/css/pagination";
 import "./MainSwiper.css";
 
 import { Autoplay } from "swiper";
-//import { productSlideObject } from "../../Interfaces/productInterfaces";
+import { useEffect, useState } from "react";
+import { productSlideObject } from "../../Interfaces/productInterfaces";
+import { BANNER_FETCH, BASE_URL, HEADERS, METHOD } from "../../Utilities/Constants";
+import axios from "axios";
 
-//export default function MainSwiper(props: productSlideObject) {
 export default function MainSwiper() {
+  const [response, setResponse] = useState<productSlideObject[] | null>(null);
+  const [error, setError] = useState('');
+  const [loading, setloading] = useState(true);
+  const [list, setList] = useState<any>(null);
+
+  useEffect(() => {
+      if(response === null)
+          getList();
+      else{
+          const temp = response.map((product: productSlideObject) => {
+              return <SwiperSlide key={product.Name}><img src={product.Image} alt={product.Name}/></SwiperSlide>
+          })
+          setList(temp);
+      }
+
+  }, [response])
+
+  const getList = () => {
+
+      const endpoint = BASE_URL + BANNER_FETCH;
+
+      axios({
+          method: METHOD,
+          url: endpoint,
+          headers: HEADERS,
+      }).then((res: any) => {
+          setResponse(res.data);
+          setError('');
+          setloading(true);
+      })
+      .catch((err: any) => {
+          setError(err);
+      })
+      .finally(() => {
+          setloading(false);
+      });   
+      
+  }
+
+
+
+
   return (
     <>
         <Swiper 
@@ -27,10 +71,7 @@ export default function MainSwiper() {
             modules={[Autoplay]} 
             className="main-swiper"
         >
-            <SwiperSlide><img src={Slide2} alt="Slide 2" style={{borderRadius: "5px"}} /></SwiperSlide>
-            <SwiperSlide><img src={Slide3} alt="Slide 3" style={{borderRadius: "5px"}} /></SwiperSlide>
-            <SwiperSlide><img src={Slide4} alt="Slide 4" style={{borderRadius: "5px"}} /></SwiperSlide>
-            <SwiperSlide><img src={Slide5} alt="Slide 5" style={{borderRadius: "5px"}} /></SwiperSlide>
+            {list}
         </Swiper>
     </>
   );
