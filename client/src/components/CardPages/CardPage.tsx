@@ -7,6 +7,7 @@ import { cardObject } from "../../Interfaces/cardInterfaces";
 import { userObject } from "../../Interfaces/userObject";
 import { BASE_URL, CARDS_FETCH, HEADERS, METHOD } from "../../Utilities/Constants";
 import CardSlide from "./CardSlide/CardSlide";
+import "./CardPage.css";
 
 const CardPage = () => {
     const { checkLogin }            = useLoginStatus();
@@ -69,7 +70,7 @@ const CardPage = () => {
 
     return (
         <>
-        <div className="homepage-container w-25 vh-100 pt-2 mx-auto text-center">
+        <div className="cards-container w-50 vh-100 pt-2 mx-auto text-center">
             <div className="row">
                 {grid}
             </div>

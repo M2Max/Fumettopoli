@@ -183,7 +183,7 @@ function Login() {
                 <MDBCardBody className='card-body p-5 d-flex flex-column align-items-center mx-auto w-100'>
 
                   <h2 className="mb-2 bold-text text-white fs-1">Signup</h2>
-                  <p className="text-white mb-5">Please enter your data</p>
+                  <p className="text-white mb-5 ask-data">Please enter your data</p>
 
                   <MDBValidationItem className='w-100' invalid feedback='Please enter your first name'>
                     <MDBInput wrapperClass='mb-4 w-100 primary-border' className='signup' labelClass='text-white' label='Firstname' id='signupName' type='text' size="lg"/>

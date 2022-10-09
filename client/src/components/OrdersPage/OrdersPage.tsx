@@ -7,6 +7,7 @@ import { orderObject } from "../../Interfaces/orderInterfaces";
 import { userObject } from "../../Interfaces/userObject";
 import { BASE_URL, HEADERS, METHOD, ORDERS_FETCH } from "../../Utilities/Constants";
 import OrderedItems from "./OrderedItems/OrderedItems";
+import "./OrdersPage.css";
 
 const OrdersPage = () => {
     const { checkLogin } = useLoginStatus();
@@ -70,12 +71,12 @@ const OrdersPage = () => {
     }
 
     return (
-        <MDBContainer className="py-4 w-50">
+        <MDBContainer className="py-4 w-50 orders-container">
             <MDBCol>
 
                 <MDBTable align='middle' responsive>
                     <MDBTableHead>
-                        <tr>
+                        <tr className="on-background-text">
                             <th scope='col'>Name</th>
                             <th scope='col'>Quantity</th>
                             <th scope='col'>Price</th>
@@ -84,7 +85,7 @@ const OrdersPage = () => {
                             <th scope='col'>Order Status</th>
                         </tr>
                     </MDBTableHead>
-                    <MDBTableBody>
+                    <MDBTableBody className="on-background-text">
                         {table}
                     </MDBTableBody>
                 </MDBTable>

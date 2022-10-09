@@ -7,6 +7,8 @@ import { userObject } from "../../../Interfaces/userObject";
 import CardImage from "../../../Resources/creditCard.png";
 import { BASE_URL, CARDS_REMOVE, HEADERS, METHOD } from "../../../Utilities/Constants";
 
+import "./CardSlide.css";
+
 const CardSlide = (props: cardObject) => {
     const navigate = useNavigate();
     const [response, setResponse]   = useState(null);
@@ -51,11 +53,8 @@ const CardSlide = (props: cardObject) => {
         if(cards !== null){
             let jsonCards = JSON.parse(cards) as cardObject[];    
             jsonCards = jsonCards.filter((card: cardObject) => {
-                console.log(card.CardNumber);
-                console.log(props.CardNumber);
                 return card.CardNumber !== props.CardNumber;
             });
-            console.log(jsonCards);
             
             sessionStorage.setItem("user-cart", JSON.stringify(jsonCards));
         }
@@ -71,14 +70,14 @@ const CardSlide = (props: cardObject) => {
     return (
         <>
             <div className="container product-slide text-center">
-                <img src={CardImage} alt="" className="img-fluid"/>
+                <img src={CardImage} alt="" className="img-fluid card-image"/>
                 <p className="mx-auto mt-5 normal-text">{props.CardName} <br/> {props.CardNumber} </p>
                 <MDBRow>
                     <MDBCol className="col-md-6">
-                        <MDBBtn size="sm" className="add-to-cart btn me-1 mt-5 normal-text" onClick={removeCard}>Remove</MDBBtn>
+                        <MDBBtn size="sm" className="add-to-cart btn me-1 mt-5 normal-text button-card" onClick={removeCard}>Remove</MDBBtn>
                     </MDBCol>
                     <MDBCol className="col-md-6">
-                        <MDBBtn size="sm" className="add-to-cart btn ms-1 mt-5 normal-text" onClick={selectCard}>Select</MDBBtn>
+                        <MDBBtn size="sm" className="add-to-cart btn ms-1 mt-5 normal-text button-card" onClick={selectCard}>Select</MDBBtn>
                     </MDBCol>
                 </MDBRow>
             </div>

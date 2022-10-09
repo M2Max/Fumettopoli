@@ -6,10 +6,12 @@
   --primary-variant: #06284b;
   --secondary: #03DAC6;
   --background: #FFFFFF;
+  --not-background: #222222;
   --error: #B00020;
   --on-primary: #FFFFFF;
   --on-background: #000000;
   --on-error: #FFFFFF;
+  --on-not-background: #FFFFFF;
 }
 
 [data-reactroot] 
@@ -36,9 +38,11 @@ code {
   --primary-variant: #8f39f9;
   --secondary: #03DAC6;
   --background: #222222;
+  --not-background: #FFFFFF;
   --error: #B00020;
   --on-primary: #2b2a29;
   --on-background: #FFFFFF;
   --on-error: #000000;
+  --on-not-background: #222222;
 }
 

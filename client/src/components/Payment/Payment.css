@@ -1,0 +1,29 @@
+.checkout-header{
+    border-bottom: none;
+}
+
+.checkout-item, .checkout-card{
+    background-color: var(--primary);
+    color: var(--on-primary);
+}
+
+
+@media screen and (min-width: 1024px) and (max-width: 1600px){
+  
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+    .checkout-container{
+        width: 90% !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .checkout-container{
+        width: 90% !important;
+    }
+
+    .checkout-button{
+        width: 30% !important;
+    }
+}

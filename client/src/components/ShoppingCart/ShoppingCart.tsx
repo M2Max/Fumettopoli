@@ -93,10 +93,10 @@ const ShoppingCart = () => {
                     {grid}
                 </MDBRow>
                 <MDBRow className="my-5">
-                    <MDBCard className="mb-5 align-middle d-inline-block">
+                    <MDBCard className="shopping-card mb-5 align-middle d-inline-block">
                         <MDBRow>
                             <MDBCol>
-                                <p className="cormorant-bold on-background-text mx-auto fs-3 my-3">Cart total is € {total}</p>
+                                <p className="cormorant-bold on-not-background-text mx-auto fs-3 my-3">Cart total is € {total}</p>
                             </MDBCol>
                             <MDBCol>
                                 <button className="add-to-cart btn mx-auto my-4 normal-text" onClick={loadCardPage}>Place Order</button>

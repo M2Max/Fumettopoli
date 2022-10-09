@@ -39,8 +39,15 @@
     color: var(--on-primary) !important;
 }
 
-@media (max-width: 768px) {
+@media screen and (min-width: 1024px) and (max-width: 1600px){
+  
+}
 
+@media screen and (min-width: 768px) and (max-width: 1023px){
+
+}
+
+@media screen and (max-width: 768px) {
     #signup-tab .card-body{
         padding: 1.5rem !important;
     }
@@ -51,5 +58,22 @@
 
     .card-body{
         width: 80vw !important;
+    }
+
+    .login-form{
+        margin-top: 3rem !important;
+    }
+
+    .ask-data{
+        margin-bottom: 0.5rem !important;
+    }
+
+    .footer-div{
+       padding: 0.20rem !important;
+
+    }
+
+    .footer-item{
+        top: 101.5% !important;
     }
 }

@@ -72,8 +72,16 @@
   padding: 0;
 }
 
+.on-not-background-text{
+  color: var(--on-not-background) !important;
+}
+
 .on-background-text{
   color: var(--on-background) !important;
+}
+
+.on-primary-text{
+  color: var(--on-primary) !important;
 }
 
 .bold-text{

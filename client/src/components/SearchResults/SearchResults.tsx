@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { productSlideObject } from "../../Interfaces/productInterfaces";
 import { BASE_URL, HEADERS, METHOD, SEARCH } from "../../Utilities/Constants";
 
+import "./SearchResults.css";
+
 
 const SearchResults = () => {
     const [response, setResponse] = useState<productSlideObject[] | null>(null);
@@ -51,7 +53,7 @@ const SearchResults = () => {
 
     return (
         <>
-            <div className="container w-50 mt-5">
+            <div className="container search-container w-50 mt-5 mb-5">
                 <div className="row">
                     {grid}
                 </div>

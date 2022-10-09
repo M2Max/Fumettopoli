@@ -7,6 +7,7 @@ import useLoginStatus from "../../Hooks/useLoginStatus";
 import { fullProductObject } from "../../Interfaces/productInterfaces";
 import { userObject } from "../../Interfaces/userObject";
 import { BASE_URL, CART_ADD, HEADERS, METHOD } from "../../Utilities/Constants";
+import "./ProductPage.css";
 
 const ProductPage = () => {
     const { checkLogin } = useLoginStatus();
@@ -16,17 +17,29 @@ const ProductPage = () => {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState('');
     const [loading, setloading] = useState(true);
+    const [quantity, setQuantity] = useState<any>();
     const navigate = useNavigate();
 
     useEffect(() => {
         window.scroll(0, 0);
+        quantitySetting();
     }, [])
 
-
-    const array = Array.from({length: data.QuantityAvailable}, (_, i) => i + 1)
-    const quantitySelector = array.map((item,index)=>{
-        return <option key={index}>{item}</option>
-      })
+    const quantitySetting = () => {
+        if(data.QuantityAvailable != 0){
+            const array = Array.from({length: data.QuantityAvailable}, (_, i) => i + 1)
+            const quantitySelector = array.map((item,index)=>{
+                return <option key={index}>{item}</option>
+            });
+            setQuantity(quantitySelector);
+        }else{
+            const addButton = document.getElementById("add-cart-button") as HTMLButtonElement;
+            const selector = document.getElementById("quantitySelected") as HTMLSelectElement;
+            addButton.disabled = true;
+            selector.disabled = true;
+        }
+    }
+   
 
 
     const priceCalc = (e: any, basePrice: number) => {
@@ -77,7 +90,7 @@ const ProductPage = () => {
     }
 
     return (
-        <MDBContainer className="py-5">
+        <MDBContainer className="product-container py-5">
             
                 <MDBRow>
                     <div className="col-sm-6 col-sm-push-12">
@@ -95,13 +108,13 @@ const ProductPage = () => {
 
                 <MDBRow className="mt-4">
                     <MDBCol>
-                        <Form.Select aria-label="Quantity" id="quantitySelected" defaultValue={1} onChange={(e: any) => { priceCalc(e, data.Price); }}>
-                            {quantitySelector}
+                        <Form.Select className="w-25" aria-label="Quantity" id="quantitySelected" defaultValue={1} onChange={(e: any) => { priceCalc(e, data.Price); }}>
+                            {quantity}
                         </Form.Select>
                     </MDBCol>
                     <MDBCol className="ms-5">
                         <p className = "cormorant-bold" style={{color: "var(--on-background)"}}>{price} €</p>
-                        <button className="add-to-cart btn normal-text" onClick={addToCart}>Add to Cart</button>
+                        <button className="add-to-cart btn normal-text" id="add-cart-button" onClick={addToCart}>Add to Cart</button>
                     </MDBCol>
                 </MDBRow>
 

@@ -9,6 +9,7 @@ import { BASE_URL, CART_DELETION, HEADERS, METHOD, ORDER_CHECKOUT } from "../../
 import ElementToPay from "./ElementToPay/ElementToPay";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
+import "./Payment.css";
 
 const Payment = () => {
     const navigate = useNavigate();
@@ -124,11 +125,11 @@ const Payment = () => {
     }
 
     return (
-    <MDBContainer className="py-4 w-50">
+    <MDBContainer className="py-4 w-50 checkout-container">
         <MDBRow>
-            <MDBCol md="8">
+            <MDBCol className="col-sm-8 col-sm-push-12 mb-4">
 
-                <MDBTable align='middle' responsive>
+                <MDBTable align='middle' className="on-background-text" responsive>
                     <MDBTableHead>
                         <tr>
                             <th scope='col'>Name</th>
@@ -143,23 +144,23 @@ const Payment = () => {
                 </MDBTable>
 
             </MDBCol>
-            <MDBCol md="4" className="mb-4">
-                <MDBCard className="mb-4">
-                    <MDBCardHeader className="py-3">
+            <MDBCol className="col-sm-4 mb-4">
+                <MDBCard className="mb-4 checkout-card">
+                    <MDBCardHeader className="py-3 checkout-header">
                     <h5 className="mb-0">Summary</h5>
                     </MDBCardHeader>
                     <MDBCardBody>
                     <MDBListGroup flush>
-                        <MDBListGroupItem className="d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                        <MDBListGroupItem className="checkout-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                         Products
                         <span>€ {total}</span>
                         </MDBListGroupItem>
-                        <MDBListGroupItem className="d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                        <MDBListGroupItem className="checkout-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                         Shipping
                         <span>FREE</span>
                         </MDBListGroupItem>
                         <hr className="my-2"></hr>
-                        <MDBListGroupItem className="d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                        <MDBListGroupItem className="checkout-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                         <div>
                             <strong>Total amount</strong>
                             <strong>
@@ -176,7 +177,7 @@ const Payment = () => {
             </MDBCol>
         </MDBRow>
         <MDBRow>
-            <MDBBtn size="sm" className="add-to-cart btn mx-auto mt-5 normal-text w-25" block onClick={submission}>
+            <MDBBtn size="sm" className="add-to-cart checkout-button btn mx-auto mt-5 normal-text w-25" block onClick={submission}>
                 Checkout
             </MDBBtn>
         </MDBRow>
