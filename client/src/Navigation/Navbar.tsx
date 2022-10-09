@@ -14,17 +14,25 @@ import Darkmode from "./Darkmode";
 import logo from "../Resources/logo.png";
 import { FaBars, FaShippingFast, FaShoppingCart, FaUserCircle } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
     const [showBasic, setShowBasic] = useState(false);
-    const [logged, setLogged] = useState(true);
-
+    const [logged, setLogged] = useState(true);  
+    
+    function on(eventType: string, listener: any) {
+        document.addEventListener(eventType, listener);
+    }
 
     useEffect(() => {
         if(sessionStorage.getItem("logged-user") === null)
             setLogged(false);
         else
             setLogged(true);
+        on("login:logged", () => {
+            setLogged(true);
+        });
+        
     }, [logged])
 
     const logout = () => {

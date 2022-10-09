@@ -36,7 +36,7 @@ const OrdersPage = () => {
             setTable(temp);
         }
 
-    })
+    }, [response])
 
     const loadOrders = () => {
         let user = sessionStorage.getItem("logged-user")

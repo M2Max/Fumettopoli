@@ -18,10 +18,6 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import { AUTH_SIGNIN, AUTH_SIGNUP, BASE_URL, HEADERS, METHOD } from '../../Utilities/Constants';
 
-const delay = (ms: number) => new Promise(
-  resolve => setTimeout(resolve, ms)
-);
-
 function Login() {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState('');
@@ -36,11 +32,26 @@ function Login() {
     setJustifyActive(value);
   };
 
+  const trigger = (eventType: string, data: any | null) => {
+    console.log("triggered");
+    
+    const event = new CustomEvent(eventType, { detail: data });
+    document.dispatchEvent(event);
+  }
+
+
   const fieldsCheck = () => {
     if (justifyActive === 'tab1'){
       signIn(document.getElementById("loginUsername") as HTMLInputElement, document.getElementById("loginPassword") as HTMLInputElement, invalidation("login"));
     } else {
-      signUp(invalidation("signup"));
+      const password = document.getElementById("signupPassword") as HTMLInputElement;
+      const password2 = document.getElementById("signupPassword2") as HTMLInputElement;
+      if(password.value !== password2.value){
+        password.classList.add("is-invalid");
+        password2.classList.add("is-invalid");
+        signUp(false);
+      }else
+        signUp(invalidation("signup"));
     }
   }
 
@@ -48,13 +59,14 @@ function Login() {
     const Elements = document.querySelectorAll("input."+type);
     let validFields: boolean = true;
 
-      // eslint-disable-next-line no-cond-assign
-      for (var i = 0, element; element = Elements[i] as HTMLInputElement; i++) {
-          if(element.value === ""){
-            element.classList.add("is-invalid");
-            validFields = false;
-          }
-      }
+    // eslint-disable-next-line no-cond-assign
+    for (var i = 0, element; element = Elements[i] as HTMLInputElement; i++) {
+        if(element.value === ""){
+          element.classList.add("is-invalid");
+          validFields = false;
+        }
+    }
+
     return validFields;
   }
 
@@ -95,6 +107,7 @@ function Login() {
     .finally(() => {
         setloading(false);
         if(canSignIn){
+          trigger("login:logged", null);
           signIn(username, password, true);
         }
     });
@@ -121,6 +134,7 @@ function Login() {
     }).then((res: any) => {
       setResponse(res.data);
       sessionStorage.setItem("logged-user", JSON.stringify(res.data));
+      trigger("login:logged", null);
       setError('');
       setloading(true);
     })

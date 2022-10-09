@@ -1,6 +1,6 @@
 import axios from "axios";
 import { MDBRow, MDBCol, MDBInput, MDBCard, MDBCardHeader, MDBCardBody, MDBBtn, MDBListGroup, MDBListGroupItem, MDBContainer, MDBRadio, MDBCheckbox, MDBValidationItem } from "mdb-react-ui-kit";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useLoginStatus from "../../../Hooks/useLoginStatus";
 import { userObject } from "../../../Interfaces/userObject";
@@ -15,11 +15,14 @@ const CardCreation = () => {
     const [loading, setloading] = useState(true);
     const { checkLogin } = useLoginStatus();
 
+    useEffect(() => {
+        checkLogin();
+    }, []);
+
     const addCard = () => {
         if(!invalidation())
             return;
         else{
-            checkLogin();
             const cardOwner = document.getElementById("cardOwner") as HTMLInputElement;
             const cardName = document.getElementById("cardName") as HTMLInputElement;
             const cardNumber = document.getElementById("cardNumber") as HTMLInputElement;
