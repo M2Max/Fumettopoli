@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2022 at 05:58 PM
+-- Generation Time: Oct 10, 2022 at 12:15 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -32,6 +32,15 @@ CREATE TABLE `banners` (
   `Image` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `banners`
+--
+
+INSERT INTO `banners` (`ProductName`, `Image`) VALUES
+('Dragon Ball Ultimate Edition2', 'https://tm.ibxk.com.br/2022/05/02/02121635014217.jpg?ims=704x264'),
+('Fullmetal Alchemist 23', 'http://www.ilbardelfumetto.com/media/articoli/3746/56fb78168d76c.jpg'),
+('Spy x Family Special Pack (Vol. 1-3) - Edizione Giapponese', 'https://dw9to29mmj727.cloudfront.net/promo/2016/6087-632_SJ_SpyFamily_2000x800_jpg_jpeg_wm');
+
 -- --------------------------------------------------------
 
 --
@@ -52,7 +61,7 @@ CREATE TABLE `cards` (
 --
 
 INSERT INTO `cards` (`OwnerName`, `CardName`, `CardNumber`, `CardExpiration`, `CardCVV`, `UserCard`) VALUES
-('Maximiliano Mamone', 'La Carta', 123456, '2025-12-10', 123, 12);
+('Maxmiliano', 'Carta di Credito', 2147483647, '2025-01-01', 312, 12);
 
 -- --------------------------------------------------------
 
@@ -104,11 +113,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`ID`, `Total`, `CardUsed`, `OrderUser`, `Status`) VALUES
-(45, 90, 123456, 12, 0),
-(46, 4.9, 123456, 12, 0),
-(47, 628.2, 123456, 12, 0),
-(48, 15, 123456, 12, 0),
-(49, 98.8, 123456, 12, 0);
+(55, 39.8, 2147483647, 12, 0);
 
 -- --------------------------------------------------------
 
@@ -121,7 +126,7 @@ CREATE TABLE `product` (
   `Description` text DEFAULT NULL,
   `CategoryName` varchar(256) NOT NULL,
   `Image` varchar(256) DEFAULT NULL,
-  `QuantityAvailable` int(10) NOT NULL,
+  `QuantityAvailable` int(10) UNSIGNED NOT NULL,
   `Price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -138,8 +143,8 @@ INSERT INTO `product` (`Name`, `Description`, `CategoryName`, `Image`, `Quantity
 ('Izuku Midoriya My Hero Academia Bravegraph Vol.1 - Banpresto Figure', 'Action figure di Izuku da My Hero Academia', 'Action Figure', 'https://mangayo.it/15643-large_default/izuku-midoriya-my-hero-academia-bravegraph-vol1-banpresto-figure.jpg', 100, 34.9),
 ('La Leggenda Del Re Lupo', ' La storia è quella di Iba, giovane e solerte storico giapponese che scomparve misteriosamente durante un viaggio in Cina, dove si era recato per svolgere una ricerca sulla cosiddetta Via della seta. Dopo un anno, la fidanzata Kyoko, certa del fatto che il giovane amato sia ancora in vita, decide di mettersi anche lei in viaggio e, una volta giunta in quelle terre, si trova al centro di un enigma: terrificanti nuvole nere, infatti, la circondano facendole perdere conoscenza e catapultandola… nell’anno 1212 e nella regione cinese di Seika, a quel tempo sotto il controllo dell’Impero Mongolo.', 'Fumetto', 'https://mangayo.it/16007-large_default/la-leggenda-del-re-lupo.jpg', 100, 7),
 ('Minato Namikaze Naruto Shippuden Vibration Stars - Banpresto Figure', 'Action figure di Minato da Naruto', 'Action Figure', 'https://mangayo.it/14258-large_default/minato-namikaze-naruto-shippuden-vibration-stars-banpresto-figure.jpg', 100, 34.9),
-('One Piece Jump Remix Edition vol. 14', 'Rivista del manga One Piece contentente i capitoli dal 239 al 271.', 'Fumetto', 'https://mangayo.it/10920-large_default/one-piece-jump-remix-edition-vol-14.jpg', 100, 19.9),
-('Slam Dunk 1', 'Hanamichi Sakuragi è una matricola del liceo Shohoku ed è sostanzialmente un attaccabrighe che non passa certo inosservato con i suoi capelli rossi fuori dal comune e con la sua altezza. Entrerà nel mondo del basket dopo essersi innamorato di una ragazza che si chiama Haruko, alla quale questo sport piace molto... quindi per conquistarla decide di entrare nella squadra di basket della sua scuola... anche se è totalmente a digiuno di questo sport, di cui non conosce nemmeno le regole! Gli inizi non saranno quindi certo dei più semplici, ma sotto sotto si potrà pian piano scoprire in lui un talento innato per questo sport! \r\n', 'Fumetto', 'https://mangayo.it/1447-large_default/slam-dunk-1.jpg', 100, 7),
+('One Piece Jump Remix Edition vol. 14', 'Rivista del manga One Piece contentente i capitoli dal 239 al 271.', 'Fumetto', 'https://mangayo.it/10920-large_default/one-piece-jump-remix-edition-vol-14.jpg', 97, 19.9),
+('Slam Dunk 1', 'Hanamichi Sakuragi è una matricola del liceo Shohoku ed è sostanzialmente un attaccabrighe che non passa certo inosservato con i suoi capelli rossi fuori dal comune e con la sua altezza. Entrerà nel mondo del basket dopo essersi innamorato di una ragazza che si chiama Haruko, alla quale questo sport piace molto... quindi per conquistarla decide di entrare nella squadra di basket della sua scuola... anche se è totalmente a digiuno di questo sport, di cui non conosce nemmeno le regole! Gli inizi non saranno quindi certo dei più semplici, ma sotto sotto si potrà pian piano scoprire in lui un talento innato per questo sport! \r\n', 'Fumetto', 'https://mangayo.it/1447-large_default/slam-dunk-1.jpg', 0, 7),
 ('Solo Leveling 1', 'Il “Gate”, un misterioso portale che collega il mondo umano a quello di terribili mostri, mette a rischio la vita degli esseri umani. Delle persone con particolari poteri, gli “hunter”, combattono per contrastarli. Sung Jinwoo è molto debole, senza particolari abilità, ed è schedato come hunter di “livello E”. Nonostante questo, cerca di fare del suo meglio per portare avanti il suo compito e pagare le spese mediche della madre… Ma un giorno, a seguito di un inspiegabile evento, Jinwoo comincia a sviluppare i suoi poteri… Che possa diventare un imbattibile hunter di \"livello S\"?', 'Fumetto', 'https://mangayo.it/2340-large_default/solo-leveling-1.jpg', 100, 8.9),
 ('Spy x Family Special Pack (Vol. 1-3) - Edizione Giapponese', 'Twilight, una delle migliori spie al mondo, ha trascorso la vita ad affrontare missioni sotto copertura per rendere il mondo un posto migliore. Un giorno però riceve un compito particolarmente difficile, per riuscire nella sua nuova missione dovrà formare una famiglia temporanea e iniziare una nuova vita! ', 'Fumetto', 'https://mangayo.it/10048-large_default/spy-x-family-special-pack-vol-1-3-3-segnalibri-esclusivi-edizione-giapponese.jpg', 100, 34.9),
 ('The Tanjiro Kamado II Demon Slayer Maximatic - Banpresto Figure', 'Action figure di Tanjiro da Demon Slayer', 'Action Figure', 'https://mangayo.it/14242-large_default/the-tanjiro-kamado-ii-demon-slayer-maximatic-banpresto-figure.jpg', 100, 34.9);
@@ -162,11 +167,7 @@ CREATE TABLE `products_ordered` (
 --
 
 INSERT INTO `products_ordered` (`ProductName`, `OrderID`, `QuantityOrdered`, `TotalProduct`) VALUES
-('Boruto - Naruto Next Generations 16', 49, 19, 98.8),
-('Dragon Ball Ultimate Edition2', 45, 6, 90),
-('Dragon Ball Ultimate Edition2', 48, 1, 15),
-('Fullmetal Alchemist 23', 46, 1, 4.9),
-('Minato Namikaze Naruto Shippuden Vibration Stars - Banpresto Figure', 47, 18, 628.2);
+('One Piece Jump Remix Edition vol. 14', 55, 2, 39.8);
 
 -- --------------------------------------------------------
 
@@ -188,10 +189,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `Username`, `Password`, `Firstname`, `Lastname`, `Address`) VALUES
-(12, 'Mamox', '$2a$08$wekLJa.g3.xhm84W1j9sW.nudGVDTEwXOa3ZzjxDspSY/OLrtJ57q', 'Maximiliano', 'Mamone', 'Via Bargone Case Senni 17'),
-(13, 'Miriano', '$2a$08$VhfE5JXIggncrmKjmNH6QeCebHhdFm5OfO3sOPu0tmQTdqWDO9PE2', 'Maximiliano', 'Mamone', 'Via Bargone Case Senni 17'),
-(26, 'Giadina', '$2a$08$dgEQa9NCv6UoyfDbm2E90e7x720VjoNlbvVQR24HSTjGY2dEyw2Gm', 'Giada', 'Ghisoni', 'Via bargone lombasino 20'),
-(27, 'lori', '$2a$08$74H2YfQvUQgTPJrgG3ANVOzE3VUNaWbyEEdOrfYinVULKGNLr5.KS', 'Lorenzo', 'Cipelli', 'Via del ritardo 104');
+(12, 'Mamox', '$2a$08$wekLJa.g3.xhm84W1j9sW.nudGVDTEwXOa3ZzjxDspSY/OLrtJ57q', 'Maximiliano', 'Mamone', 'Via Bargone Case Senni 17');
 
 --
 -- Indexes for dumped tables
@@ -259,13 +257,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `ID` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `ID` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `ID` int(32) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Constraints for dumped tables
