@@ -194,33 +194,33 @@ function Login() {
             <MDBCol col='12'>
 
               <MDBCard className='login-form position-absolute top-50 start-50 translate-middle mx-auto text-center' style={{borderRadius: '1rem', width: '400px'}}>
-                <MDBCardBody className='card-body p-5 d-flex flex-column align-items-center mx-auto w-100'>
+                <MDBCardBody className='card-body p-3 d-flex flex-column align-items-center mx-auto w-100'>
 
                   <h2 className="mb-2 bold-text text-white fs-1">Signup</h2>
-                  <p className="text-white mb-5 ask-data">Please enter your data</p>
+                  <p className="text-white mb-3 ask-data">Please enter your data</p>
 
                   <MDBValidationItem className='w-100' invalid feedback='Please enter your first name'>
-                    <MDBInput wrapperClass='mb-4 w-100 primary-border' className='signup' labelClass='text-white' label='Firstname' id='signupName' type='text' size="lg"/>
+                    <MDBInput wrapperClass='mb-2 w-100 primary-border' className='signup' labelClass='text-white' label='Firstname' id='signupName' type='text' size="lg"/>
                   </MDBValidationItem>
                   
                   <MDBValidationItem className='w-100' invalid feedback='Please enter your last name'>
-                    <MDBInput wrapperClass='mb-4 w-100 primary-border' className='signup' labelClass='text-white' label='Lastname' id='signupLast' type='text' size="lg"/>
+                    <MDBInput wrapperClass='mb-2 w-100 primary-border' className='signup' labelClass='text-white' label='Lastname' id='signupLast' type='text' size="lg"/>
                   </MDBValidationItem>
                   
                   <MDBValidationItem className='w-100' invalid feedback='Please enter a valid username'>
-                    <MDBInput wrapperClass='mb-4 w-100 primary-border' className='signup' labelClass='text-white' label='Username' id='signupUsername' type='text' size="lg"/>
+                    <MDBInput wrapperClass='mb-2 w-100 primary-border' className='signup' labelClass='text-white' label='Username' id='signupUsername' type='text' size="lg"/>
                   </MDBValidationItem>
 
                   <MDBValidationItem className='w-100' invalid feedback='Please enter a valid address'>
-                    <MDBInput wrapperClass='mb-4 w-100 primary-border' className='signup' labelClass='text-white' label='Address' id='signupAddress' type='text' size="lg"/>
+                    <MDBInput wrapperClass='mb-2 w-100 primary-border' className='signup' labelClass='text-white' label='Address' id='signupAddress' type='text' size="lg"/>
                   </MDBValidationItem>
 
                   <MDBValidationItem className='w-100' invalid feedback='Please enter a valid password'>
-                    <MDBInput wrapperClass='mb-4 w-100 primary-border' className='signup' labelClass='text-white' label='Password' id='signupPassword' type='password' size="lg"/>
+                    <MDBInput wrapperClass='mb-2 w-100 primary-border' className='signup' labelClass='text-white' label='Password' id='signupPassword' type='password' size="lg"/>
                   </MDBValidationItem>
 
                   <MDBValidationItem className='w-100' invalid feedback='Please enter the same password'>
-                    <MDBInput wrapperClass='mb-4 w-100 primary-border' className='signup' labelClass='text-white' label='Repeat Password' id='signupPassword2' type='password' size="lg"/>
+                    <MDBInput wrapperClass='mb-2 w-100 primary-border' className='signup' labelClass='text-white' label='Repeat Password' id='signupPassword2' type='password' size="lg"/>
                   </MDBValidationItem>
 
                   <MDBBtn outline className='mx-2 mb-1 px-5 border-0 button-hover text-white bold-text fs-5' color='white' size='lg' onClick={fieldsCheck}>
@@ -228,7 +228,7 @@ function Login() {
                   </MDBBtn>
 
                   <div>
-                    <p className="mb-0">Already have an account? <br className='break' /> <a href="#!" className="text-white-50 bold-text sign-up-hover" onClick={() => {handleJustifyClick('tab1')}}>Login</a></p>
+                    <p className="mb-2">Already have an account? <br className='break' /> <a href="#!" className="text-white-50 bold-text sign-up-hover" onClick={() => {handleJustifyClick('tab1')}}>Login</a></p>
                   </div>
                   
                 </MDBCardBody>

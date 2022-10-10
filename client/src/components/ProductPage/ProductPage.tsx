@@ -107,7 +107,7 @@ const ProductPage = () => {
                     </MDBCol>
                 </MDBRow>
 
-                <MDBRow className="mt-4">
+                <MDBRow className="mt-4 last-row">
                     <MDBCol>
                         <Form.Select className="w-25" aria-label="Quantity" id="quantitySelected" defaultValue={1} onChange={(e: any) => { priceCalc(e, data.Price); }}>
                             {quantity}

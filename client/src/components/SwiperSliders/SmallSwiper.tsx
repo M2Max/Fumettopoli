@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import "./SmallSwiper.css";
 
 // import required modules
-import { Pagination, Autoplay } from "swiper";
+import { Autoplay } from "swiper";
 import ProductSlide from "./ProductSlide/ProductSlide";
 import { useEffect, useState } from "react";
 import { BASE_URL, HEADERS, METHOD, SWIPER_FETCH } from "../../Utilities/Constants";
@@ -67,16 +67,12 @@ export default function SmallSwiper(props: any) {
                 loopFillGroupWithBlank={false}
                 loop={true}
                 loopAdditionalSlides={5}
-                pagination={{
-                clickable: true,
-                dynamicBullets: true,
-                }}
                 grabCursor={true}
                 autoplay={{
                     delay: 3000,
                     disableOnInteraction: false
                 }}
-                modules={[Pagination, Autoplay]}
+                modules={[Autoplay]}
                 className="small-swiper"
             >
                 {list}
