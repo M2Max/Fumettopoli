@@ -15,7 +15,7 @@ export const Homepage = () => {
                 <SmallSwiper category="Fumetto"></SmallSwiper>
             </MDBRow>
             <MDBRow style={{marginBottom: "5rem"}}>
-                <h1 className="bold-text">Action Figure</h1>
+                <h1 className="bold-text">Action Figures</h1>
                 <SmallSwiper category="Action Figure"></SmallSwiper>
             </MDBRow>
         </MDBContainer>
